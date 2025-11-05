@@ -125,30 +125,28 @@ class PeppolSync:
 
 
 
-    def extract_country(self, element: ET.Element) -> Optional[str]:
-        """Extract country code from businesscard element"""
-        entity = element.find(".//{*}entity")
-        if entity is not None:
-            return entity.get("countrycode")
+
+    def extract_country_from_minidom(self, dom: minidom.Document) -> Optional[str]:
+        """Extract country code from minidom document"""
+        entities = dom.getElementsByTagName("entity")
+        if entities:
+            return entities[0].getAttribute("countrycode")
         return None
 
-    def extract_date(self, element: ET.Element) -> Optional[str]:
-        """Extract registration date from businesscard element"""
-        regdate = element.find(".//{*}entity/{*}regdate")
-        if regdate is None:
-            regdate = element.find(".//{*}regdate")
-
-        if regdate is not None and regdate.text:
-            date_str = regdate.text.strip()
+    def extract_date_from_minidom(self, dom: minidom.Document) -> Optional[str]:
+        """Extract registration date from minidom document"""
+        regdates = dom.getElementsByTagName("regdate")
+        if regdates and regdates[0].firstChild and regdates[0].firstChild.data:
+            date_str = regdates[0].firstChild.data.strip()
             if len(date_str) >= 10:
                 return date_str[:10]
         return None
 
-    def extract_entity_name(self, element: ET.Element) -> Optional[str]:
-        """Extract entity name from businesscard element"""
-        name_element = element.find(".//{*}entity/{*}name")
-        if name_element is not None:
-            return name_element.get("name")
+    def extract_entity_name_from_minidom(self, dom: minidom.Document) -> Optional[str]:
+        """Extract entity name from minidom document"""
+        names = dom.getElementsByTagName("name")
+        if names:
+            return names[0].getAttribute("name")
         return None
 
     def process_xml(self, input_file: Path):
@@ -207,9 +205,9 @@ class PeppolSync:
                         self.progress(f"{processed_cards:,} business cards in {duration:.1f}s: {throughput:.0f} cards/sec")
 
                     try:
-                        elem = ET.fromstring(card_xml)
-                        country = self.extract_country(elem)
-                        date = self.extract_date(elem)
+                        dom = minidom.parseString(card_xml)
+                        country = self.extract_country_from_minidom(dom)
+                        date = self.extract_date_from_minidom(dom)
 
                         if not country:
                             self.log(f"Could not extract country from card: {card_xml[:100]}")
@@ -218,7 +216,7 @@ class PeppolSync:
                         self.stats[f"country_{country}"] += 1
                         
                         if not date:
-                            entity_name = self.extract_entity_name(elem)
+                            entity_name = self.extract_entity_name_from_minidom(dom)
                             safe_name = "".join(filter(str.isalnum, entity_name or ""))[:5].upper()
                             date = f"2000-{safe_name}" if safe_name else "2000-UNKNOWN"
                         
@@ -244,7 +242,6 @@ class PeppolSync:
                             open_files[country] = file_handle
 
                         # Pretty print the XML before writing
-                        dom = minidom.parseString(card_xml)
                         pretty_card_xml = dom.documentElement.toprettyxml(indent="    ")
                         indented_card = "    " + pretty_card_xml.replace("\n", "\n    ").rstrip()
                         open_files[country].write("\n" + indented_card)
@@ -254,7 +251,7 @@ class PeppolSync:
                         continue
         finally:
             for handle in open_files.values():
-                handle.write("\n</root>\n")
+                handle.write("\n</root>")
                 handle.close()
 
         self.success(f"Processed {processed_cards:,} business cards")
