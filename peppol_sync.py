@@ -450,7 +450,7 @@ def main():
     parser.add_argument(
         "-M", "--max",
         type=int,
-        default=1000000,
+        default=2000000,
         help="Maximum number of bytes per output file (default: 1000000)"
     )
 
