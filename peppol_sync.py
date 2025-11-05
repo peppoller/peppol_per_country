@@ -254,8 +254,10 @@ class PeppolSync:
                 handle.write("\n</root>")
                 handle.close()
 
-        self.success(f"Processed {processed_cards:,} business cards")
-        self.log(f"Processing complete: {processed_cards} cards processed")
+        duration = time.time() - start_time
+        throughput = processed_cards / duration if duration > 0 else 0
+        self.success(f"Processed {processed_cards:,} business cards in {duration:.0f}s: {throughput:%.0f} cards/sec")
+        self.log(f"Processed {processed_cards:,} business cards in {duration:.0f}s: {throughput:%.0f} cards/sec")
 
         countries = [k.replace("country_", "") for k in self.stats.keys() if k.startswith("country_")]
 
