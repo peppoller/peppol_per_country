@@ -133,166 +133,131 @@ class PeppolSync:
 
     def extract_country(self, element: ET.Element) -> Optional[str]:
         """Extract country code from businesscard element"""
-        # Find entity element with countrycode attribute
-        entity = element.find(".//{http://www.peppol.eu/schema/pd/businesscard-generic/201907/}entity")
-        if entity is None:
-            # Try without namespace
-            entity = element.find(".//entity")
-
+        entity = element.find(".//{*}entity")
         if entity is not None:
             return entity.get("countrycode")
-
         return None
 
     def extract_date(self, element: ET.Element) -> Optional[str]:
         """Extract registration date from businesscard element"""
-        # Find regdate element
-        regdate = element.find(".//{http://www.peppol.eu/schema/pd/businesscard-generic/201907/}regdate")
+        regdate = element.find(".//{*}entity/{*}regdate")
         if regdate is None:
-            # Try without namespace
-            regdate = element.find(".//regdate")
+            regdate = element.find(".//{*}regdate")
 
         if regdate is not None and regdate.text:
-            # Extract YYYY-MM-DD from date
             date_str = regdate.text.strip()
             if len(date_str) >= 10:
-                return date_str[:10]  # Return YYYY-MM-DD
-
+                return date_str[:10]
         return None
 
     def extract_entity_name(self, element: ET.Element) -> Optional[str]:
         """Extract entity name from businesscard element"""
-        entity = element.find(".//{http://www.peppol.eu/schema/pd/businesscard-generic/201907/}entity")
-        if entity is None:
-            entity = element.find(".//entity")
-
-        if entity is not None:
-            name_element = entity.find("{http://www.peppol.eu/schema/pd/businesscard-generic/201907/}name")
-            if name_element is None:
-                name_element = entity.find("name")
-
-            if name_element is not None:
-                return name_element.get("name")
-
+        name_element = element.find(".//{*}entity/{*}name")
+        if name_element is not None:
+            return name_element.get("name")
         return None
 
-    def element_to_string(self, element: ET.Element) -> str:
-        """Convert element to XML string without namespace prefixes"""
-        # Convert to string
-        xml_str = ET.tostring(element, encoding="unicode", method="xml")
-
-        # Remove namespace declarations from the businesscard tag
-        # This keeps the content clean
-        xml_str = xml_str.replace(' xmlns:ns0="http://www.peppol.eu/schema/pd/businesscard-generic/201907/"', '')
-        xml_str = xml_str.replace(' xmlns="http://www.peppol.eu/schema/pd/businesscard-generic/201907/"', '')
-        xml_str = xml_str.replace('ns0:', '')
-
-        return xml_str
-
     def process_xml(self, input_file: Path):
-        """Process XML file in streaming mode - single pass"""
-        self.announce(f"Processing {input_file.name} in single pass")
-        self.log(f"Starting XML processing: {input_file}")
+        """Process XML file using text splitting for performance"""
+        self.announce(f"Processing {input_file.name} with text splitting")
+        self.log(f"Starting text processing: {input_file}")
 
         if not input_file.exists():
             raise FileNotFoundError(f"Input file not found: {input_file}")
 
-        # Use iterparse for streaming
-        context = ET.iterparse(str(input_file), events=("end",))
-
+        chunk_size = 1024 * 1024  # 1MB
+        buffer = ""
+        separator = "</businesscard>"
+        
+        header = ""
+        header_found = False
+        open_files: Dict[str, TextIO] = {}
         processed_cards = 0
 
-        # Track the currently open file
-        current_file_handle = None
-        current_file_path = None
-
         try:
-            for event, elem in context:
-                if elem.tag.endswith("businesscard"):
+            with open(input_file, 'r', encoding='utf-8') as f:
+                # 1. Find header
+                while not header_found:
+                    chunk = f.read(chunk_size)
+                    if not chunk: break
+                    buffer += chunk
+                    if "<businesscard>" in buffer:
+                        header_end = buffer.find("<businesscard>")
+                        header = buffer[:header_end]
+                        buffer = buffer[header_end:]
+                        header_found = True
+                
+                if not header_found:
+                    self.log("No <businesscard> tag found.")
+                    return 0
+
+                # 2. Process business cards
+                while True:
+                    if separator not in buffer:
+                        chunk = f.read(chunk_size)
+                        if not chunk: break
+                        buffer += chunk
+                    
+                    if separator not in buffer: break
+
+                    end_index = buffer.find(separator) + len(separator)
+                    card_xml = buffer[:end_index]
+                    buffer = buffer[end_index:]
+
                     processed_cards += 1
+                    if processed_cards % 10000 == 0:
+                        self.progress(f"Processed {processed_cards:,} business cards...")
 
-                    country = self.extract_country(elem)
-                    date = self.extract_date(elem)
+                    try:
+                        elem = ET.fromstring(card_xml)
+                        country = self.extract_country(elem)
+                        date = self.extract_date(elem)
 
-                    if country:
+                        if not country:
+                            self.log(f"Could not extract country from card: {card_xml[:100]}")
+                            continue
+
                         self.stats[f"country_{country}"] += 1
-
+                        
                         if not date:
                             entity_name = self.extract_entity_name(elem)
-                            safe_name = ""
-                            if entity_name:
-                                # Filter for alphanumeric characters only
-                                filtered_name = "".join(filter(str.isalnum, entity_name))
-                                safe_name = filtered_name[:5].upper()
-
-                            if safe_name:
-                                date = f"2000-{safe_name}"
-                            else:
-                                date = "2000-UNKNOWN"
-
+                            safe_name = "".join(filter(str.isalnum, entity_name or ""))[:5].upper()
+                            date = f"2000-{safe_name}" if safe_name else "2000-UNKNOWN"
+                        
                         self.stats[f"date_{date}"] += 1
 
-                        # Get stats for this country
+                        # File writing logic
                         stats = self.file_stats.setdefault(country, {'sequence': 1})
-
-                        # Determine output path
                         output_path = self.extracts_dir / country / f"business-cards.{stats['sequence']:06d}.xml"
 
-                        # Check if we need to roll over to a new file
-                        if output_path.exists() and output_path.stat().st_size > self.max_bytes:
+                        if country in open_files and open_files[country].tell() > self.max_bytes:
+                            open_files[country].write('</root>\n')
+                            open_files[country].close()
+                            del open_files[country]
                             stats['sequence'] += 1
                             output_path = self.extracts_dir / country / f"business-cards.{stats['sequence']:06d}.xml"
 
-                        # If the file we need to write to is different from the currently open one
-                        if output_path != current_file_path:
-                            # Close the previously open file
-                            if current_file_handle:
-                                current_file_handle.write('</root>\n')
-                                current_file_handle.close()
-
-                            # Check if file exists to decide on writing header
-                            file_exists = output_path.exists()
-
-                            if not file_exists:
-                                output_path.parent.mkdir(parents=True, exist_ok=True)
-                                current_file_handle = open(output_path, "w", encoding="utf-8")
-                                current_file_handle.write('<?xml version="1.0" encoding="UTF-8"?>\n')
-                                current_file_handle.write('<root xmlns="http://www.peppol.eu/schema/pd/businesscard-generic/201907/" version="2">\n')
-                                self.log(f"Created output file: {output_path}")
+                        if country not in open_files:
+                            output_path.parent.mkdir(parents=True, exist_ok=True)
+                            file_handle = open(output_path, "a", encoding="utf-8")
+                            if file_handle.tell() == 0:
+                                file_handle.write(header)
                                 self.file_count += 1
-                            else:
-                                # File exists, open in r+ mode to remove </root>
-                                current_file_handle = open(output_path, "r+", encoding="utf-8")
-                                current_file_handle.seek(0, os.SEEK_END)
-                                position = current_file_handle.tell() - len('</root>\n')
-                                current_file_handle.seek(position, os.SEEK_SET)
-                                current_file_handle.truncate()
+                            open_files[country] = file_handle
 
-                            current_file_path = output_path
+                        open_files[country].write(card_xml)
 
-                        # Write businesscard element
-                        xml_str = self.element_to_string(elem)
-                        for line in xml_str.split('\n'):
-                            if line.strip():
-                                current_file_handle.write(f"  {line}\n")
-
-
-
-                    if processed_cards % 10000 == 0:
-                        self.progress(f"Processed {processed_cards:,} business cards, {self.file_count} files opened...")
-
-                    elem.clear()
-
+                    except ET.ParseError as e:
+                        self.log(f"Error parsing card XML: {e} - XML: {card_xml[:200]}")
+                        continue
         finally:
-            # Close the last open file
-            if current_file_handle:
-                current_file_handle.write('</root>\n')
-                current_file_handle.close()
+            for handle in open_files.values():
+                handle.write("</root>")
+                handle.close()
 
         self.success(f"Processed {processed_cards:,} business cards")
         self.log(f"Processing complete: {processed_cards} cards processed")
 
-        # Print statistics
         countries = [k.replace("country_", "") for k in self.stats.keys() if k.startswith("country_")]
         self.log(f"Found {len(countries)} countries")
         self.log(f"Created {self.file_count} output files")
@@ -339,9 +304,24 @@ class PeppolSync:
         self.success(f"Report generated at {report_path}")
         self.log(f"Report generated at {report_path}")
 
-    def sync(self, force_download: bool = False):
+    def cleanup_extracts(self):
+        """Delete all existing XML files in the extracts directory"""
+        self.announce("Cleaning up existing extracts")
+        deleted_files = 0
+        for file_path in self.extracts_dir.glob("**/*.xml"):
+            if file_path.is_file():
+                file_path.unlink()
+                deleted_files += 1
+        self.success(f"Deleted {deleted_files} XML files from {self.extracts_dir}/")
+        self.log(f"Deleted {deleted_files} XML files from {self.extracts_dir}/")
+
+    def sync(self, force_download: bool = False, cleanup: bool = False):
         """Main sync operation"""
         self.log("Starting sync operation")
+
+        if cleanup:
+            self.cleanup_extracts()
+
         self.announce(f"Max bytes per file: {self.max_bytes:,}")
 
         # Download XML file if needed
@@ -443,35 +423,41 @@ def main():
 
 
     parser.add_argument(
-        "-v", "--verbose",
+        "-V", "--verbose",
         action="store_true",
         help="Enable verbose output"
     )
 
     parser.add_argument(
-        "-f", "--force",
+        "-F", "--force",
         action="store_true",
         help="Force re-download of XML file even if it exists"
     )
 
     parser.add_argument(
-        "-n", "--number",
+        "-N", "--number",
         type=int,
         default=10,
         help="Number of largest files to show (default: 10)"
     )
 
     parser.add_argument(
-        "--max-bytes",
+        "-M", "---max-bytes",
         type=int,
         default=1000000,
         help="Maximum number of bytes per output file (default: 1000000)"
     )
 
     parser.add_argument(
-        "--keep-tmp",
+        "-K" ,"--keep-tmp",
         action="store_true",
         help="Keep temporary files after processing (default: delete)"
+    )
+
+    parser.add_argument(
+        "-C", "--cleanup",
+        action="store_true",
+        help="Delete all existing XML files in extracts/ before starting"
     )
 
     args = parser.parse_args()
@@ -486,7 +472,7 @@ def main():
 
     try:
         if args.action == "sync":
-            return syncer.sync(force_download=args.force)
+            return syncer.sync(force_download=args.force, cleanup=args.cleanup)
         elif args.action == "download":
             try:
                 input_file = syncer.download_xml(force=args.force)

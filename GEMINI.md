@@ -6,7 +6,7 @@ This project consists of a Python script that downloads a large XML file of busi
 
 **Key Technologies:**
 
-*   **Language:** Python 3
+*   **Language:** Python 3, Go 1.23.5
 *   **Libraries:** No external libraries beyond standard Python libraries are used.
 *   **CI/CD:** GitHub Actions
 *   **Documentation:** MkDocs
