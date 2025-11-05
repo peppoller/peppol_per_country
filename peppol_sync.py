@@ -229,7 +229,7 @@ class PeppolSync:
                         output_path = self.extracts_dir / country / f"business-cards.{stats['sequence']:06d}.xml"
 
                         if country in open_files and open_files[country].tell() > self.max_bytes:
-                            open_files[country].write('</root>\n')
+                            open_files[country].write('\n</root>\n')
                             open_files[country].close()
                             del open_files[country]
                             stats['sequence'] += 1
