@@ -1,6 +1,6 @@
-# How to do a sparse checkout
+# Git Sparse Checkout
 
-If you are only interested in the data for a specific country, you can use Git's `sparse-checkout` feature to download only the files for that country. This can save a significant amount of disk space and time.
+If you are only interested in the data _for a specific country_, you can use Git's `sparse-checkout` feature to download only the files for that country. This can save a significant amount of disk space and time.
 
 Here is how you can do a sparse checkout for just the data for Norway (`NO`).
 
