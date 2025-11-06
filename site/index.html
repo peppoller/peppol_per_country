@@ -72,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#peppol-git-per-country" class="md-skip">
+        <a href="#peppol-per-country" class="md-skip">
           Skip to content
         </a>
       
@@ -107,7 +107,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Peppol Git Per Country
+              Home
             
           </span>
         </div>
@@ -179,7 +179,7 @@
   
     
   
-  Peppol Git Per Country
+  Home
 
       </a>
     </li>
@@ -314,7 +314,7 @@
           
   
   <span class="md-ellipsis">
-    Peppol Git Per Country
+    Home
   </span>
   
 
@@ -325,7 +325,7 @@
         
   
   <span class="md-ellipsis">
-    Peppol Git Per Country
+    Home
   </span>
   
 
@@ -347,9 +347,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#core-script" class="md-nav__link">
+  <a href="#core-technology" class="md-nav__link">
     <span class="md-ellipsis">
-      Core Script
+      Core Technology
     </span>
   </a>
   
@@ -467,17 +467,28 @@
                   
 
 
-<h1 id="peppol-git-per-country">Peppol Git Per Country<a class="headerlink" href="#peppol-git-per-country" title="Permanent link">&para;</a></h1>
-<p>PEPPOL Per Country is a Python-based tool that synchronizes PEPPOL business directory exports by country. It downloads the massive XML export from <code>directory.peppol.eu</code>, processes it using streaming XML parsing, and splits business cards into country-specific files stored in git.</p>
-<h2 id="core-script">Core Script<a class="headerlink" href="#core-script" title="Permanent link">&para;</a></h2>
+<p><img alt="GitHub Actions Workflow Status" src="https://img.shields.io/github/actions/workflow/status/peppoller/peppol_per_country/daily.yml" />
+<img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/peppoller/peppol_per_country" />
+<img alt="GitHub commit activity" src="https://img.shields.io/github/commit-activity/w/peppoller/peppol_per_country" />
+<img alt="GitHub commit activity" src="https://img.shields.io/github/commit-activity/m/peppoller/peppol_per_country" /></p>
+<h1 id="peppol-per-country">Peppol Per Country<a class="headerlink" href="#peppol-per-country" title="Permanent link">&para;</a></h1>
+<p><strong>Peppol Per Country</strong> is a GitHub repository where the Peppol Business Cards export from <a href="https://directory.peppol.eu/export/businesscards">directory.peppol.eu</a> (a single XML file of more than 2GB), is split into manageable 2MB XML files per country, and this is synced on a daily basis.</p>
+<p>It allows for</p>
+<ul>
+<li>version control of the Peppol repository.</li>
+<li>subscribing to one specific country (cf <a href="sparse/">sparse checkout</a> )</li>
+</ul>
+<h2 id="core-technology">Core Technology<a class="headerlink" href="#core-technology" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="peppol_sync/">peppol_sync.py</a></li>
 <li>Python 3.x with <code>lxml</code> for XML processing</li>
 <li><a href="github/">GitHub Actions</a> for daily automated sync</li>
-<li><a href="documentation/">Documentation</a> : MkDocs with Material theme (using <a href="https://github.ciom/pforret/mkdox">pforret/mkdox</a> )</li>
+<li><a href="documentation/">Project Documentation</a> : MkDocs with Material theme (using <a href="https://github.ciom/pforret/mkdox">pforret/mkdox</a> )</li>
 </ul>
 <h2 id="sparse-checkout">Sparse Checkout<a class="headerlink" href="#sparse-checkout" title="Permanent link">&para;</a></h2>
 <p>You can 'subscribe' to only the .xml files <strong>for 1 specific country</strong> (so not the full 2+GB of extract files) , using <a href="sparse/">git sparse-checkout</a>.</p>
+<p><img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/peppoller/peppol_per_country" />
+ <a href="https://github.com/peppoller/peppol_per_country">github.com/peppoller/peppol_per_country</a></p>
 
 
 
