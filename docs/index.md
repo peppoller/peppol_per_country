@@ -1,61 +1,96 @@
-# PEPPOL SYNC
+## Project Overview
 
-Python-based synchronization tool for PEPPOL business directory exports.
+PEPPOL Per Country is a Python-based tool that synchronizes PEPPOL business directory exports by country. It downloads the massive XML export from `directory.peppol.eu`, processes it using streaming XML parsing, and splits business cards into country-specific files stored in git.
 
-## What it does
+**Core Technologies:**
+- Python 3.x with `lxml` for XML processing
+- GitHub Actions for daily automated sync
+- MkDocs with Material theme for documentation
 
-1. Downloads the PEPPOL business cards export from https://directory.peppol.eu/export/businesscards
-   - Saves to `tmp/directory-export-business-cards.xml`
-   - Uses streaming download with progress tracking
-   - Reuses existing file unless forced with `-F`
+## Development Commands
 
-2. Processes the massive XML file in streaming mode
-   - Splits business cards by country code
-   - Creates sequentially numbered files per country: `extracts/{COUNTRY}/business-cards.{SEQUENCE:06d}.xml`
-   - Files are split based on size threshold (default: 1MB per file via `--max`)
-   - Example output: `extracts/NO/business-cards.000001.xml`, `extracts/BE/business-cards.000001.xml`
-
-3. Git operations (manual or via GitHub Actions)
-   - `git add`, `git commit`, `git push`
-   - Daily GitHub job: `peppol_sync.sh sync`
-
-## Usage
+### Running the sync tool
 
 ```bash
-# Full sync: download + process XML
+# Full sync: download + process XML (recommended for first run)
 python3 peppol_sync.py sync
 
-# Just download the XML file
+# Force re-download even if file exists
+python3 peppol_sync.py sync -F
+
+# Keep temporary files for debugging
+python3 peppol_sync.py sync -K
+
+# Don't delete existing extracts before processing
+python3 peppol_sync.py sync -C
+
+# Verbose output
+python3 peppol_sync.py sync -V
+```
+
+### Utility commands
+
+```bash
+# Download XML only (no processing)
 python3 peppol_sync.py download
 
 # Check configuration
 python3 peppol_sync.py check
 
-# Show N largest output files
+# Show largest output files
 python3 peppol_sync.py huge -n 20
+
+# Custom max file size (default: 2MB)
+python3 peppol_sync.py sync -M 1000000
 ```
 
-## Options
+### Documentation
 
+```bash
+# Build and serve docs locally
+mkdocs serve
+
+# Build static site (output to site/)
+mkdocs build
 ```
-usage: peppol_sync.py [-h] [-V] [-F] [-C] [-K] [-T TMP] [-M MAX] {sync,check,download,huge}
 
-Synchronize PEPPOL export into git-managed files
+### Dependencies
 
-positional arguments:
-  {sync,check,download,huge}
-                        Action to perform
-
-options:
-  -h, --help            show this help message and exit
-  -V, --verbose         Enable verbose output
-  -F, --force           Force re-download of XML file even if it exists
-  -C, --nocleanup       Do not delete existing XML files in extracts/ before starting (default: delete)
-  -K, --keep-tmp        Keep temporary files after processing (default: delete)
-  -T, --tmp TMP         Temporary directory (default: tmp)
-  -M, --max MAX         Maximum number of bytes per output file (default: 1000000)
+```bash
+# Install required Python package
+pip install lxml
 ```
-## Output Structure
+
+## Architecture
+
+### Main Script: peppol_sync.py
+
+The `PeppolSync` class handles the entire workflow:
+
+1. **Download Phase** (`download_xml()` at line 70)
+   - Streams XML from `https://directory.peppol.eu/export/businesscards`
+   - Saves to `tmp/directory-export-business-cards.xml`
+   - Shows progress every 100MB
+   - Skips download if file exists (override with `-F`)
+
+2. **Processing Phase** (`process_xml()` at line 153)
+   - Uses text-based chunking (1MB chunks) for memory efficiency
+   - Parses business cards with `lxml.etree` for fast XML handling
+   - Extracts country code from `<entity countrycode="XX">`
+   - Extracts registration date from `<regdate>` for statistics
+   - Writes pretty-printed XML to country directories
+
+3. **File Splitting Logic** (lines 228-250)
+   - Splits files when they exceed `max_bytes` (default: 2MB)
+   - Sequential naming: `business-cards.000001.xml`, `business-cards.000002.xml`, etc.
+   - Each country has its own directory: `extracts/BE/`, `extracts/NO/`, etc.
+   - Automatically creates header and footer tags for valid XML
+
+4. **Report Generation** (`generate_report()` at line 269)
+   - Creates `extracts/report.md` with country statistics
+   - Shows file count, card count, and size per country
+
+### Output Structure
 
 ```
 extracts/
@@ -63,21 +98,64 @@ extracts/
 │   ├── business-cards.000001.xml
 │   └── business-cards.000002.xml
 ├── BE/
-│   └── business-cards.000001.xml
-├── NO/
 │   ├── business-cards.000001.xml
-│   ├── business-cards.000002.xml
-│   └── business-cards.000003.xml
-└── ...
+│   └── ...
+├── report.md
+└── peppol_sync.log
 ```
 
-## Cleanup
+### GitHub Actions
 
-By default, the script automatically deletes all files in the `tmp/` directory after successful processing to save disk space. 
-The large XML export file can be several gigabytes.
+**Daily Sync Workflow** (`.github/workflows/daily.yml`)
+- Runs at 09:15 UTC daily
+- Executes `python3 peppol_sync.py sync -V`
+- Commits and pushes changes to `extracts/` automatically
+- Creates `extracts/git_diff.txt` with change summary
 
-To keep temporary files for debugging or inspection:
-```bash
-python3 peppol_sync.py sync -K
+**Pages Deployment** (`.github/workflows/static.yml`)
+- Deploys `site/` directory to GitHub Pages
+- Triggered on push to main branch
+
+## Key Implementation Details
+
+### Memory-Efficient XML Processing
+
+The script processes multi-GB XML files without loading everything into memory:
+- Reads in 1MB text chunks
+- Splits on `</businesscard>` delimiter
+- Parses individual cards with lxml
+- Uses streaming writes to output files
+
+### Country Code Extraction
+
+Located in `extract_country_from_etree()` (line 130):
+```python
+entity = element.find(".//entity")
+if entity is not None:
+    return entity.get("countrycode")
 ```
 
+### File Rotation
+
+When a country file exceeds `max_bytes`:
+1. Writes `</root>` footer to close current file
+2. Increments sequence number in `self.file_stats[country]['sequence']`
+3. Opens new file with updated sequence
+4. Writes XML header to new file
+
+### Cleanup Behavior
+
+- **Temporary files** (`tmp/`): Deleted after processing by default (keep with `-K`)
+- **Extract files** (`extracts/**/*.xml`): Deleted before each sync by default (preserve with `-C`)
+- **Log file** (`extracts/peppol_sync.log`): Overwritten on each run
+
+## Version Management
+
+Version is stored in `VERSION.md` and updated via commit messages like `setver: set version to 0.1.12`. There is no automated version bumping script in the repository.
+
+## Documentation Site
+
+Uses MkDocs with Material theme. Configuration in `mkdocs.yml`:
+- Main docs in `docs/` directory
+- Documentation is deployed to GitHub Pages via the static workflow
+- `README.md` is a symlink to `docs/index.md`
