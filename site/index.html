@@ -356,15 +356,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#github-action" class="md-nav__link">
-    <span class="md-ellipsis">
-      GitHub Action
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#sparse-checkout" class="md-nav__link">
     <span class="md-ellipsis">
       Sparse Checkout
@@ -489,24 +480,10 @@
 <p>PEPPOL Per Country is a Python-based tool that synchronizes PEPPOL business directory exports by country. It downloads the massive XML export from <code>directory.peppol.eu</code>, processes it using streaming XML parsing, and splits business cards into country-specific files stored in git.</p>
 <h2 id="core-script">Core Script<a class="headerlink" href="#core-script" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Python 3.x with <code>lxml</code> for XML processing: <a href="peppol_sync/">peppol_sync.py</a></li>
-<li>GitHub Actions for daily automated sync</li>
-<li>MkDocs with Material theme for documentation</li>
-<li>data processing is done by </li>
-</ul>
-<h2 id="github-action">GitHub Action<a class="headerlink" href="#github-action" title="Permanent link">&para;</a></h2>
-<p><strong>Daily Sync Workflow</strong> (<code>.github/workflows/daily.yml</code>)</p>
-<ul>
-<li>Runs at 09:15 UTC daily</li>
-<li>Executes <code>python3 peppol_sync.py sync -V</code></li>
-<li>Commits and pushes changes to <code>extracts/</code> automatically</li>
-<li>Creates <code>extracts/git_diff.txt</code> with change summary</li>
-<li>takes +- 5 minutes</li>
-</ul>
-<p><strong>Pages Deployment</strong> (<code>.github/workflows/static.yml</code>)</p>
-<ul>
-<li>Deploys <code>site/</code> directory to GitHub Pages</li>
-<li>Triggered on push to main branch</li>
+<li><a href="peppol_sync/">peppol_sync.py</a></li>
+<li>Python 3.x with <code>lxml</code> for XML processing</li>
+<li><a href="github/">GitHub Actions</a> for daily automated sync</li>
+<li><a href="documentation/">Documentation</a> : MkDocs with Material theme (using <a href="https://github.ciom/pforret/mkdox">pforret/mkdox</a> )</li>
 </ul>
 <h2 id="sparse-checkout">Sparse Checkout<a class="headerlink" href="#sparse-checkout" title="Permanent link">&para;</a></h2>
 <p>You can 'subscribe' to only the .xml files <strong>for 1 specific country</strong> (so not the full 2+GB of extract files) , using <a href="sparse/">git sparse-checkout</a>.</p>
