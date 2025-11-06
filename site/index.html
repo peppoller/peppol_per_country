@@ -14,7 +14,7 @@
       
       
       
-        <link rel="next" href="peppol_sync/">
+        <link rel="next" href="documentation/">
       
       
       <link rel="icon" href="icon/android-chrome-192x192.png">
@@ -43,8 +43,8 @@
         
         
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
-        <style>:root{--md-text-font:"Nunito";--md-code-font:"Roboto Mono"}</style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Quicksand";--md-code-font:"Roboto Mono"}</style>
       
     
     
@@ -63,7 +63,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="red" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="indigo">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -180,6 +180,40 @@
     
   
   Peppol Git Per Country
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="documentation/" class="md-tabs__link">
+        
+  
+    
+  
+  mkdox documentation
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="github/" class="md-tabs__link">
+        
+  
+    
+  
+  GitHub action
 
       </a>
     </li>
@@ -333,16 +367,7 @@
         <li class="md-nav__item">
   <a href="#sparse-checkout" class="md-nav__link">
     <span class="md-ellipsis">
-      sparse-checkout
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#version-management" class="md-nav__link">
-    <span class="md-ellipsis">
-      Version Management
+      Sparse Checkout
     </span>
   </a>
   
@@ -361,6 +386,46 @@
   
 </nav>
       
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="documentation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    mkdox documentation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="github/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GitHub action
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -443,17 +508,11 @@
 <li>Deploys <code>site/</code> directory to GitHub Pages</li>
 <li>Triggered on push to main branch</li>
 </ul>
-<h2 id="sparse-checkout">sparse-checkout<a class="headerlink" href="#sparse-checkout" title="Permanent link">&para;</a></h2>
+<h2 id="sparse-checkout">Sparse Checkout<a class="headerlink" href="#sparse-checkout" title="Permanent link">&para;</a></h2>
 <p>You can 'subscribe' to only the .xml files <strong>for 1 specific country</strong> (so not the full 2+GB of extract files) , using <a href="sparse/">git sparse-checkout</a>.</p>
-<h2 id="version-management">Version Management<a class="headerlink" href="#version-management" title="Permanent link">&para;</a></h2>
-<p>Version is stored in <code>VERSION.md</code> and updated via commit messages like <code>setver: set version to 0.1.12</code>. There is no automated version bumping script in the repository.</p>
 <h2 id="documentation-site">Documentation Site<a class="headerlink" href="#documentation-site" title="Permanent link">&para;</a></h2>
-<p>Uses MkDocs with Material theme. Configuration in <code>mkdocs.yml</code>:</p>
 <ul>
-<li>Main docs in <code>docs/</code> directory</li>
-<li>Publish to <code>site/</code> directory</li>
-<li>Documentation is deployed to GitHub Pages via the static workflow</li>
-<li><code>README.md</code> is a symlink to <code>docs/index.md</code></li>
+<li>cf <a href="documentation/">Documentation</a></li>
 </ul>
 
 

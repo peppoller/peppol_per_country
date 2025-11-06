@@ -28,15 +28,7 @@ PEPPOL Per Country is a Python-based tool that synchronizes PEPPOL business dire
 
 You can 'subscribe' to only the .xml files **for 1 specific country** (so not the full 2+GB of extract files) , using [git sparse-checkout](sparse.md).
 
-## Version Management
-
-Version is stored in `VERSION.md` and updated via commit messages like `setver: set version to 0.1.12`. There is no automated version bumping script in the repository.
-
 ## Documentation Site
 
-Uses MkDocs with Material theme. Configuration in `mkdocs.yml`:
+* cf [Documentation](documentation.md)
 
-- Main docs in `docs/` directory
-- Publish to `site/` directory
-- Documentation is deployed to GitHub Pages via the static workflow
-- `README.md` is a symlink to `docs/index.md`

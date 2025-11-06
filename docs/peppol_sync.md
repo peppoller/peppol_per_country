@@ -109,14 +109,6 @@ python3 peppol_sync.py huge -n 20
 python3 peppol_sync.py sync -M 1000000
 ```
 
-## GitHub action testing
-
-```bash
-# uses https://github.com/nektos/act
-# on MacOS: brew install act
-
-test_gh_action.sh
-```
 
 ## Dependencies
 

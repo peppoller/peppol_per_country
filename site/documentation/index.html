@@ -10,11 +10,13 @@
       
       
       
-        <link rel="canonical" href="https://peppoller.github.io/peppol_per_country/sparse/">
+        <link rel="canonical" href="https://peppoller.github.io/peppol_per_country/documentation/">
       
       
-        <link rel="prev" href="../peppol_sync/">
+        <link rel="prev" href="..">
       
+      
+        <link rel="next" href="../github/">
       
       
       <link rel="icon" href="../icon/android-chrome-192x192.png">
@@ -22,7 +24,7 @@
     
     
       
-        <title>How to do a sparse checkout - Peppol Data Per Country</title>
+        <title>mkdox documentation - Peppol Data Per Country</title>
       
     
     
@@ -72,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#how-to-do-a-sparse-checkout" class="md-skip">
+        <a href="#mkdox-documentation" class="md-skip">
           Skip to content
         </a>
       
@@ -107,7 +109,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              How to do a sparse checkout
+              mkdox documentation
             
           </span>
         </div>
@@ -187,9 +189,11 @@
         
   
   
+    
   
-    <li class="md-tabs__item">
-      <a href="../documentation/" class="md-tabs__link">
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
         
   
     
@@ -238,11 +242,9 @@
         
   
   
-    
   
-  
-    <li class="md-tabs__item md-tabs__item--active">
-      <a href="./" class="md-tabs__link">
+    <li class="md-tabs__item">
+      <a href="../sparse/" class="md-tabs__link">
         
   
     
@@ -318,10 +320,19 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../documentation/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -330,6 +341,7 @@
   
 
       </a>
+      
     </li>
   
 
@@ -378,30 +390,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    How to do a sparse checkout
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../sparse/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -410,53 +402,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#step-by-step-guide" class="md-nav__link">
-    <span class="md-ellipsis">
-      Step-by-step guide
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#adding-more-directories" class="md-nav__link">
-    <span class="md-ellipsis">
-      Adding more directories
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#reverting-to-a-full-checkout" class="md-nav__link">
-    <span class="md-ellipsis">
-      Reverting to a full checkout
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -476,42 +421,15 @@
                   
 
 
-<h1 id="how-to-do-a-sparse-checkout">How to do a sparse checkout<a class="headerlink" href="#how-to-do-a-sparse-checkout" title="Permanent link">&para;</a></h1>
-<p>If you are only interested in the data for a specific country, you can use Git's <code>sparse-checkout</code> feature to download only the files for that country. This can save a significant amount of disk space and time.</p>
-<p>Here is how you can do a sparse checkout for just the data for Norway (<code>NO</code>).</p>
-<h2 id="step-by-step-guide">Step-by-step guide<a class="headerlink" href="#step-by-step-guide" title="Permanent link">&para;</a></h2>
-<ol>
-<li>
-<p><strong>Clone the repository without checking out any files:</strong></p>
-<p>This special clone command creates the <code>.git</code> directory with all the repository history but doesn't pull the actual files yet.</p>
-<div class="highlight"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>--filter<span class="o">=</span>blob:none<span class="w"> </span>--no-checkout<span class="w"> </span>https://github.com/peppol-io/peppol-sync.git
-<span class="nb">cd</span><span class="w"> </span>peppol-sync
-</code></pre></div>
-</li>
-<li>
-<p><strong>Enable sparse checkout and define the directory you want:</strong></p>
-<p>This command tells Git that you only want to have the files in the <code>extracts/NO/</code> directory.</p>
-<div class="highlight"><pre><span></span><code>git<span class="w"> </span>sparse-checkout<span class="w"> </span><span class="nb">set</span><span class="w"> </span>extracts/NO/
-</code></pre></div>
-</li>
-<li>
-<p><strong>Pull the files:</strong></p>
-<p>Now, Git will pull only the files that match the path you specified.</p>
-<div class="highlight"><pre><span></span><code>git<span class="w"> </span>checkout
-</code></pre></div>
-</li>
-</ol>
-<p>After these steps, your <code>extracts/</code> directory will contain only the <code>NO</code> subdirectory.</p>
-<h2 id="adding-more-directories">Adding more directories<a class="headerlink" href="#adding-more-directories" title="Permanent link">&para;</a></h2>
-<p>If you want to add more directories later, you can use the <code>add</code> command:</p>
-<div class="highlight"><pre><span></span><code>git<span class="w"> </span>sparse-checkout<span class="w"> </span>add<span class="w"> </span>extracts/SE/
-git<span class="w"> </span>checkout
-</code></pre></div>
-<h2 id="reverting-to-a-full-checkout">Reverting to a full checkout<a class="headerlink" href="#reverting-to-a-full-checkout" title="Permanent link">&para;</a></h2>
-<p>If you want to disable sparse checkout and download all the files in the repository, you can use the <code>disable</code> command:</p>
-<div class="highlight"><pre><span></span><code>git<span class="w"> </span>sparse-checkout<span class="w"> </span>disable
-git<span class="w"> </span>checkout
-</code></pre></div>
+<h1 id="mkdox-documentation">mkdox documentation<a class="headerlink" href="#mkdox-documentation" title="Permanent link">&para;</a></h1>
+<p>Uses MkDocs with Material theme. Configuration in <code>mkdocs.yml</code>:</p>
+<ul>
+<li>Main docs in <code>docs/</code> directory</li>
+<li>Publish to <code>site/</code> directory</li>
+<li>Documentation is deployed to GitHub Pages via the static workflow</li>
+<li><code>README.md</code> is a symlink to <code>docs/index.md</code></li>
+</ul>
+<p>Published to <a href="https://peppoller.github.io/peppol_per_country/">peppoller.github.io/peppol_per_country</a></p>
 
 
 
