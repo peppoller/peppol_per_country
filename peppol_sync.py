@@ -29,6 +29,7 @@ class PeppolSync:
         self.tmp_dir = Path(tmp_dir)
         self.verbose = verbose
         self.extracts_dir = Path("extracts")
+        self.docs_dir = Path("docs")
         self.file_stats = {}
         self.max_bytes = max_bytes
         self.keep_tmp = keep_tmp
@@ -269,7 +270,7 @@ class PeppolSync:
     def generate_report(self):
         """Generate a markdown report of the sync operation"""
         self.announce("Generating report")
-        report_path = self.extracts_dir / "report.md"
+        report_path = self.docs_dir / "report.md"
 
         with open(report_path, "w", encoding="utf-8") as f:
             f.write("# PEPPOL Sync Report\n\n")
