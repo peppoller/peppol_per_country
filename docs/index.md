@@ -13,7 +13,3 @@ PEPPOL Per Country is a Python-based tool that synchronizes PEPPOL business dire
 
 You can 'subscribe' to only the .xml files **for 1 specific country** (so not the full 2+GB of extract files) , using [git sparse-checkout](sparse.md).
 
-## Documentation Site
-
-* cf [Documentation](documentation.md)
-
