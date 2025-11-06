@@ -72,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#project-overview" class="md-skip">
+        <a href="#peppol-git-per-country" class="md-skip">
           Skip to content
         </a>
       
@@ -107,7 +107,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Home
+              Peppol Git Per Country
             
           </span>
         </div>
@@ -179,7 +179,7 @@
   
     
   
-  Home
+  Peppol Git Per Country
 
       </a>
     </li>
@@ -290,12 +290,14 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
           
   
   <span class="md-ellipsis">
-    Home
+    Peppol Git Per Country
   </span>
   
 
@@ -306,7 +308,7 @@
         
   
   <span class="md-ellipsis">
-    Home
+    Peppol Git Per Country
   </span>
   
 
@@ -318,6 +320,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -326,155 +330,29 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#project-overview" class="md-nav__link">
+  <a href="#core-script" class="md-nav__link">
     <span class="md-ellipsis">
-      Project Overview
+      Core Script
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#development-commands" class="md-nav__link">
+  <a href="#github-action" class="md-nav__link">
     <span class="md-ellipsis">
-      Development Commands
+      GitHub Action
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Development Commands">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#running-the-sync-tool" class="md-nav__link">
-    <span class="md-ellipsis">
-      Running the sync tool
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#utility-commands" class="md-nav__link">
-    <span class="md-ellipsis">
-      Utility commands
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#documentation" class="md-nav__link">
-    <span class="md-ellipsis">
-      Documentation
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#dependencies" class="md-nav__link">
-    <span class="md-ellipsis">
-      Dependencies
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#architecture" class="md-nav__link">
+  <a href="#sparse-checkout" class="md-nav__link">
     <span class="md-ellipsis">
-      Architecture
+      sparse-checkout
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Architecture">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#main-script-peppol_syncpy" class="md-nav__link">
-    <span class="md-ellipsis">
-      Main Script: peppol_sync.py
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#output-structure" class="md-nav__link">
-    <span class="md-ellipsis">
-      Output Structure
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#github-actions" class="md-nav__link">
-    <span class="md-ellipsis">
-      GitHub Actions
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#key-implementation-details" class="md-nav__link">
-    <span class="md-ellipsis">
-      Key Implementation Details
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Key Implementation Details">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#memory-efficient-xml-processing" class="md-nav__link">
-    <span class="md-ellipsis">
-      Memory-Efficient XML Processing
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#country-code-extraction" class="md-nav__link">
-    <span class="md-ellipsis">
-      Country Code Extraction
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#file-rotation" class="md-nav__link">
-    <span class="md-ellipsis">
-      File Rotation
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#cleanup-behavior" class="md-nav__link">
-    <span class="md-ellipsis">
-      Cleanup Behavior
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -579,143 +457,41 @@
                   
 
 
-  <h1>Home</h1>
-
-<h2 id="project-overview">Project Overview<a class="headerlink" href="#project-overview" title="Permanent link">&para;</a></h2>
+<h1 id="peppol-git-per-country">Peppol Git Per Country<a class="headerlink" href="#peppol-git-per-country" title="Permanent link">&para;</a></h1>
 <p>PEPPOL Per Country is a Python-based tool that synchronizes PEPPOL business directory exports by country. It downloads the massive XML export from <code>directory.peppol.eu</code>, processes it using streaming XML parsing, and splits business cards into country-specific files stored in git.</p>
-<p><strong>Core Technologies:</strong>
-- Python 3.x with <code>lxml</code> for XML processing
-- GitHub Actions for daily automated sync
-- MkDocs with Material theme for documentation</p>
-<h2 id="development-commands">Development Commands<a class="headerlink" href="#development-commands" title="Permanent link">&para;</a></h2>
-<h3 id="running-the-sync-tool">Running the sync tool<a class="headerlink" href="#running-the-sync-tool" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="c1"># Full sync: download + process XML (recommended for first run)</span>
-python3<span class="w"> </span>peppol_sync.py<span class="w"> </span>sync
-
-<span class="c1"># Force re-download even if file exists</span>
-python3<span class="w"> </span>peppol_sync.py<span class="w"> </span>sync<span class="w"> </span>-F
-
-<span class="c1"># Keep temporary files for debugging</span>
-python3<span class="w"> </span>peppol_sync.py<span class="w"> </span>sync<span class="w"> </span>-K
-
-<span class="c1"># Don&#39;t delete existing extracts before processing</span>
-python3<span class="w"> </span>peppol_sync.py<span class="w"> </span>sync<span class="w"> </span>-C
-
-<span class="c1"># Verbose output</span>
-python3<span class="w"> </span>peppol_sync.py<span class="w"> </span>sync<span class="w"> </span>-V
-</code></pre></div>
-<h3 id="utility-commands">Utility commands<a class="headerlink" href="#utility-commands" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="c1"># Download XML only (no processing)</span>
-python3<span class="w"> </span>peppol_sync.py<span class="w"> </span>download
-
-<span class="c1"># Check configuration</span>
-python3<span class="w"> </span>peppol_sync.py<span class="w"> </span>check
-
-<span class="c1"># Show largest output files</span>
-python3<span class="w"> </span>peppol_sync.py<span class="w"> </span>huge<span class="w"> </span>-n<span class="w"> </span><span class="m">20</span>
-
-<span class="c1"># Custom max file size (default: 2MB)</span>
-python3<span class="w"> </span>peppol_sync.py<span class="w"> </span>sync<span class="w"> </span>-M<span class="w"> </span><span class="m">1000000</span>
-</code></pre></div>
-<h3 id="documentation">Documentation<a class="headerlink" href="#documentation" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="c1"># Build and serve docs locally</span>
-mkdocs<span class="w"> </span>serve
-
-<span class="c1"># Build static site (output to site/)</span>
-mkdocs<span class="w"> </span>build
-</code></pre></div>
-<h3 id="dependencies">Dependencies<a class="headerlink" href="#dependencies" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="c1"># Install required Python package</span>
-pip<span class="w"> </span>install<span class="w"> </span>lxml
-</code></pre></div>
-<h2 id="architecture">Architecture<a class="headerlink" href="#architecture" title="Permanent link">&para;</a></h2>
-<h3 id="main-script-peppol_syncpy">Main Script: peppol_sync.py<a class="headerlink" href="#main-script-peppol_syncpy" title="Permanent link">&para;</a></h3>
-<p>The <code>PeppolSync</code> class handles the entire workflow:</p>
-<ol>
-<li><strong>Download Phase</strong> (<code>download_xml()</code> at line 70)</li>
-<li>Streams XML from <code>https://directory.peppol.eu/export/businesscards</code></li>
-<li>Saves to <code>tmp/directory-export-business-cards.xml</code></li>
-<li>Shows progress every 100MB</li>
-<li>
-<p>Skips download if file exists (override with <code>-F</code>)</p>
-</li>
-<li>
-<p><strong>Processing Phase</strong> (<code>process_xml()</code> at line 153)</p>
-</li>
-<li>Uses text-based chunking (1MB chunks) for memory efficiency</li>
-<li>Parses business cards with <code>lxml.etree</code> for fast XML handling</li>
-<li>Extracts country code from <code>&lt;entity countrycode="XX"&gt;</code></li>
-<li>Extracts registration date from <code>&lt;regdate&gt;</code> for statistics</li>
-<li>
-<p>Writes pretty-printed XML to country directories</p>
-</li>
-<li>
-<p><strong>File Splitting Logic</strong> (lines 228-250)</p>
-</li>
-<li>Splits files when they exceed <code>max_bytes</code> (default: 2MB)</li>
-<li>Sequential naming: <code>business-cards.000001.xml</code>, <code>business-cards.000002.xml</code>, etc.</li>
-<li>Each country has its own directory: <code>extracts/BE/</code>, <code>extracts/NO/</code>, etc.</li>
-<li>
-<p>Automatically creates header and footer tags for valid XML</p>
-</li>
-<li>
-<p><strong>Report Generation</strong> (<code>generate_report()</code> at line 269)</p>
-</li>
-<li>Creates <code>extracts/report.md</code> with country statistics</li>
-<li>Shows file count, card count, and size per country</li>
-</ol>
-<h3 id="output-structure">Output Structure<a class="headerlink" href="#output-structure" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>extracts/
-├── AT/
-│   ├── business-cards.000001.xml
-│   └── business-cards.000002.xml
-├── BE/
-│   ├── business-cards.000001.xml
-│   └── ...
-├── report.md
-└── peppol_sync.log
-</code></pre></div>
-<h3 id="github-actions">GitHub Actions<a class="headerlink" href="#github-actions" title="Permanent link">&para;</a></h3>
-<p><strong>Daily Sync Workflow</strong> (<code>.github/workflows/daily.yml</code>)
-- Runs at 09:15 UTC daily
-- Executes <code>python3 peppol_sync.py sync -V</code>
-- Commits and pushes changes to <code>extracts/</code> automatically
-- Creates <code>extracts/git_diff.txt</code> with change summary</p>
-<p><strong>Pages Deployment</strong> (<code>.github/workflows/static.yml</code>)
-- Deploys <code>site/</code> directory to GitHub Pages
-- Triggered on push to main branch</p>
-<h2 id="key-implementation-details">Key Implementation Details<a class="headerlink" href="#key-implementation-details" title="Permanent link">&para;</a></h2>
-<h3 id="memory-efficient-xml-processing">Memory-Efficient XML Processing<a class="headerlink" href="#memory-efficient-xml-processing" title="Permanent link">&para;</a></h3>
-<p>The script processes multi-GB XML files without loading everything into memory:
-- Reads in 1MB text chunks
-- Splits on <code>&lt;/businesscard&gt;</code> delimiter
-- Parses individual cards with lxml
-- Uses streaming writes to output files</p>
-<h3 id="country-code-extraction">Country Code Extraction<a class="headerlink" href="#country-code-extraction" title="Permanent link">&para;</a></h3>
-<p>Located in <code>extract_country_from_etree()</code> (line 130):
-<div class="highlight"><pre><span></span><code><span class="n">entity</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;.//entity&quot;</span><span class="p">)</span>
-<span class="k">if</span> <span class="n">entity</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-    <span class="k">return</span> <span class="n">entity</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;countrycode&quot;</span><span class="p">)</span>
-</code></pre></div></p>
-<h3 id="file-rotation">File Rotation<a class="headerlink" href="#file-rotation" title="Permanent link">&para;</a></h3>
-<p>When a country file exceeds <code>max_bytes</code>:
-1. Writes <code>&lt;/root&gt;</code> footer to close current file
-2. Increments sequence number in <code>self.file_stats[country]['sequence']</code>
-3. Opens new file with updated sequence
-4. Writes XML header to new file</p>
-<h3 id="cleanup-behavior">Cleanup Behavior<a class="headerlink" href="#cleanup-behavior" title="Permanent link">&para;</a></h3>
+<h2 id="core-script">Core Script<a class="headerlink" href="#core-script" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong>Temporary files</strong> (<code>tmp/</code>): Deleted after processing by default (keep with <code>-K</code>)</li>
-<li><strong>Extract files</strong> (<code>extracts/**/*.xml</code>): Deleted before each sync by default (preserve with <code>-C</code>)</li>
-<li><strong>Log file</strong> (<code>extracts/peppol_sync.log</code>): Overwritten on each run</li>
+<li>Python 3.x with <code>lxml</code> for XML processing: <a href="peppol_sync/">peppol_sync.py</a></li>
+<li>GitHub Actions for daily automated sync</li>
+<li>MkDocs with Material theme for documentation</li>
+<li>data processing is done by </li>
 </ul>
+<h2 id="github-action">GitHub Action<a class="headerlink" href="#github-action" title="Permanent link">&para;</a></h2>
+<p><strong>Daily Sync Workflow</strong> (<code>.github/workflows/daily.yml</code>)</p>
+<ul>
+<li>Runs at 09:15 UTC daily</li>
+<li>Executes <code>python3 peppol_sync.py sync -V</code></li>
+<li>Commits and pushes changes to <code>extracts/</code> automatically</li>
+<li>Creates <code>extracts/git_diff.txt</code> with change summary</li>
+<li>takes +- 5 minutes</li>
+</ul>
+<p><strong>Pages Deployment</strong> (<code>.github/workflows/static.yml</code>)</p>
+<ul>
+<li>Deploys <code>site/</code> directory to GitHub Pages</li>
+<li>Triggered on push to main branch</li>
+</ul>
+<h2 id="sparse-checkout">sparse-checkout<a class="headerlink" href="#sparse-checkout" title="Permanent link">&para;</a></h2>
+<p>You can 'subscribe' to only the .xml files <strong>for 1 specific country</strong> (so not the full 2+GB of extract files) , using <a href="sparse/">git sparse-checkout</a>.</p>
 <h2 id="version-management">Version Management<a class="headerlink" href="#version-management" title="Permanent link">&para;</a></h2>
 <p>Version is stored in <code>VERSION.md</code> and updated via commit messages like <code>setver: set version to 0.1.12</code>. There is no automated version bumping script in the repository.</p>
 <h2 id="documentation-site">Documentation Site<a class="headerlink" href="#documentation-site" title="Permanent link">&para;</a></h2>
-<p>Uses MkDocs with Material theme. Configuration in <code>mkdocs.yml</code>:
-- Main docs in <code>docs/</code> directory
-- Documentation is deployed to GitHub Pages via the static workflow
-- <code>README.md</code> is a symlink to <code>docs/index.md</code></p>
+<p>Uses MkDocs with Material theme. Configuration in <code>mkdocs.yml</code>:</p>
+<ul>
+<li>Main docs in <code>docs/</code> directory</li>
+<li>Publish to <code>site/</code> directory</li>
+<li>Documentation is deployed to GitHub Pages via the static workflow</li>
+<li><code>README.md</code> is a symlink to <code>docs/index.md</code></li>
+</ul>
 
 
 

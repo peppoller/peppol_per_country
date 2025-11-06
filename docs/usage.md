@@ -44,4 +44,4 @@ The first argument to the script must be one of the following actions:
 *   `-C`, `--nocleanup`: By default, the script deletes all existing XML files in the `extracts/` directory before starting a new sync. This flag prevents the cleanup, preserving the existing files.
 *   `-K`, `--keep-tmp`: Prevents the script from deleting temporary files (like the downloaded XML) after processing is complete.
 *   `-T`, `--tmp TMP`: Specifies the temporary directory to use for downloading files. Defaults to `tmp`.
-*   `-M`, --max MAX`: Sets the maximum size in bytes for each output XML file. When a file exceeds this size, a new one is created. Defaults to `1000000` (1MB).
+*   `-M`, `--max MAX`: Sets the maximum size in bytes for each output XML file. When a file exceeds this size, a new one is created. Defaults to 2000000 (2MB).

@@ -179,7 +179,7 @@
   
     
   
-  Home
+  Peppol Git Per Country
 
       </a>
     </li>
@@ -290,7 +290,7 @@
         
   
   <span class="md-ellipsis">
-    Home
+    Peppol Git Per Country
   </span>
   
 
@@ -352,6 +352,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#functionality" class="md-nav__link">
+    <span class="md-ellipsis">
+      Functionality
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#running-the-sync-tool" class="md-nav__link">
     <span class="md-ellipsis">
       Running the sync tool
@@ -375,6 +384,66 @@
       GitHub action testing
     </span>
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dependencies
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-implementation-details" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Implementation Details
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Key Implementation Details">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#memory-efficient-xml-processing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Memory-Efficient XML Processing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#country-code-extraction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Country Code Extraction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#file-rotation" class="md-nav__link">
+    <span class="md-ellipsis">
+      File Rotation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cleanup-behavior" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cleanup Behavior
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -442,7 +511,47 @@
 
 
 <h1 id="peppol_syncpy">peppol_sync.py<a class="headerlink" href="#peppol_syncpy" title="Permanent link">&para;</a></h1>
+<h2 id="functionality">Functionality<a class="headerlink" href="#functionality" title="Permanent link">&para;</a></h2>
+<p>The <code>PeppolSync</code> class handles the entire workflow:</p>
+<ol>
+<li>
+<p><strong>Download Phase</strong> (<code>download_xml()</code> at line 70)</p>
+<ul>
+<li>Streams XML from <code>https://directory.peppol.eu/export/businesscards</code></li>
+<li>Saves to <code>tmp/directory-export-business-cards.xml</code></li>
+<li>Shows progress every 100MB</li>
+<li>Skips download if file exists (override with <code>-F</code>)</li>
+</ul>
+</li>
+<li>
+<p><strong>Processing Phase</strong> (<code>process_xml()</code> at line 153)</p>
+<ul>
+<li>Uses text-based chunking (1MB chunks) for memory efficiency</li>
+<li>Parses business cards with <code>lxml.etree</code> for fast XML handling</li>
+<li>Extracts country code from <code>&lt;entity countrycode="XX"&gt;</code></li>
+<li>Extracts registration date from <code>&lt;regdate&gt;</code> for statistics</li>
+<li>Writes pretty-printed XML to country directories</li>
+</ul>
+</li>
+<li>
+<p><strong>File Splitting Logic</strong> (lines 228-250)</p>
+<ul>
+<li>Splits files when they exceed <code>max_bytes</code> (default: 2MB)</li>
+<li>Sequential naming: <code>business-cards.000001.xml</code>, <code>business-cards.000002.xml</code>, etc.</li>
+<li>Each country has its own directory: <code>extracts/BE/</code>, <code>extracts/NO/</code>, etc.</li>
+<li>Automatically creates header and footer tags for valid XML</li>
+</ul>
+</li>
+<li>
+<p><strong>Report Generation</strong> (<code>generate_report()</code> at line 269)</p>
+<ul>
+<li>Creates <code>extracts/report.md</code> with country statistics</li>
+<li>Shows file count, card count, and size per country</li>
+</ul>
+</li>
+</ol>
 <h2 id="running-the-sync-tool">Running the sync tool<a class="headerlink" href="#running-the-sync-tool" title="Permanent link">&para;</a></h2>
+<p>cf <a href="../usage/">Usage</a></p>
 <div class="highlight"><pre><span></span><code><span class="c1"># Full sync: download + process XML (recommended for first run)</span>
 python3<span class="w"> </span>peppol_sync.py<span class="w"> </span>sync
 
@@ -472,6 +581,44 @@ python3<span class="w"> </span>peppol_sync.py<span class="w"> </span>huge<span c
 python3<span class="w"> </span>peppol_sync.py<span class="w"> </span>sync<span class="w"> </span>-M<span class="w"> </span><span class="m">1000000</span>
 </code></pre></div>
 <h2 id="github-action-testing">GitHub action testing<a class="headerlink" href="#github-action-testing" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="c1"># uses https://github.com/nektos/act</span>
+<span class="c1"># on MacOS: brew install act</span>
+
+test_gh_action.sh
+</code></pre></div>
+<h2 id="dependencies">Dependencies<a class="headerlink" href="#dependencies" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="c1"># Install required Python package</span>
+pip<span class="w"> </span>install<span class="w"> </span>lxml
+</code></pre></div>
+<h2 id="key-implementation-details">Key Implementation Details<a class="headerlink" href="#key-implementation-details" title="Permanent link">&para;</a></h2>
+<h3 id="memory-efficient-xml-processing">Memory-Efficient XML Processing<a class="headerlink" href="#memory-efficient-xml-processing" title="Permanent link">&para;</a></h3>
+<p>The script processes multi-GB XML files without loading everything into memory:</p>
+<ul>
+<li>Reads in 1MB text chunks</li>
+<li>Splits on <code>&lt;/businesscard&gt;</code> delimiter</li>
+<li>Parses individual cards with lxml</li>
+<li>Uses streaming writes to output files</li>
+</ul>
+<h3 id="country-code-extraction">Country Code Extraction<a class="headerlink" href="#country-code-extraction" title="Permanent link">&para;</a></h3>
+<p>Located in <code>extract_country_from_etree()</code> (line 130):
+<div class="highlight"><pre><span></span><code><span class="n">entity</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;.//entity&quot;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">entity</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">entity</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;countrycode&quot;</span><span class="p">)</span>
+</code></pre></div></p>
+<h3 id="file-rotation">File Rotation<a class="headerlink" href="#file-rotation" title="Permanent link">&para;</a></h3>
+<p>When a country file exceeds <code>max_bytes</code>:</p>
+<ol>
+<li>Writes <code>&lt;/root&gt;</code> footer to close current file</li>
+<li>Increments sequence number in <code>self.file_stats[country]['sequence']</code></li>
+<li>Opens new file with updated sequence</li>
+<li>Writes XML header to new file</li>
+</ol>
+<h3 id="cleanup-behavior">Cleanup Behavior<a class="headerlink" href="#cleanup-behavior" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Temporary files</strong> (<code>tmp/</code>): Deleted after processing by default (keep with <code>-K</code>)</li>
+<li><strong>Extract files</strong> (<code>extracts/**/*.xml</code>): Deleted before each sync by default (preserve with <code>-C</code>)</li>
+<li><strong>Log file</strong> (<code>extracts/peppol_sync.log</code>): Overwritten on each run</li>
+</ul>
 
 
 
