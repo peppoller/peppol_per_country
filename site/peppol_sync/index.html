@@ -6,11 +6,11 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="peppol_sync Docs by pforret">
+        <meta name="description" content="peppol_per_country Docs by pforret">
       
       
       
-        <link rel="canonical" href="http://peppol_sync.test/peppol_sync/">
+        <link rel="canonical" href="https://peppoller.github.io/peppol_per_country/peppol_sync/">
       
       
         <link rel="prev" href="..">
@@ -24,7 +24,7 @@
     
     
       
-        <title>peppol_sync.py - peppol_sync Docs</title>
+        <title>peppol_sync.py - Peppol Data Per Country</title>
       
     
     
@@ -90,7 +90,7 @@
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="peppol_sync Docs" class="md-header__button md-logo" aria-label="peppol_sync Docs" data-md-component="logo">
+    <a href=".." title="Peppol Data Per Country" class="md-header__button md-logo" aria-label="Peppol Data Per Country" data-md-component="logo">
       
   <img src="../icon/android-chrome-192x192.png" alt="logo">
 
@@ -103,7 +103,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            peppol_sync Docs
+            Peppol Data Per Country
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -222,23 +222,6 @@
   
 
       
-        
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../usage/" class="md-tabs__link">
-        
-  
-    
-  
-  PEPPOL Sync Usage
-
-      </a>
-    </li>
-  
-
-      
     </ul>
   </div>
 </nav>
@@ -269,12 +252,12 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="peppol_sync Docs" class="md-nav__button md-logo" aria-label="peppol_sync Docs" data-md-component="logo">
+    <a href=".." title="Peppol Data Per Country" class="md-nav__button md-logo" aria-label="Peppol Data Per Country" data-md-component="logo">
       
   <img src="../icon/android-chrome-192x192.png" alt="logo">
 
     </a>
-    peppol_sync Docs
+    Peppol Data Per Country
   </label>
   
   <ul class="md-nav__list" data-md-scrollfix>
@@ -350,6 +333,42 @@
       Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#command-line-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Command-line Usage
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#actions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Actions
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#options" class="md-nav__link">
+    <span class="md-ellipsis">
+      Options
+    </span>
+  </a>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#functionality" class="md-nav__link">
@@ -475,26 +494,6 @@
   
 
     
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../usage/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    PEPPOL Sync Usage
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
   </ul>
 </nav>
                   </div>
@@ -511,6 +510,44 @@
 
 
 <h1 id="peppol_syncpy">peppol_sync.py<a class="headerlink" href="#peppol_syncpy" title="Permanent link">&para;</a></h1>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p>The <code>peppol_sync.py</code> script is a command-line tool designed to synchronize business card data from the PEPPOL directory. It downloads a large XML file, splits it into smaller, more manageable XML files organized by country, and stores them in the <code>extracts/</code> directory.</p>
+<h2 id="command-line-usage">Command-line Usage<a class="headerlink" href="#command-line-usage" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>usage: peppol_sync.py [-h] [-V] [-F] [-C] [-K] [-T TMP] [-M MAX] {sync,check,download,huge}
+
+Synchronize PEPPOL export into git-managed files
+
+positional arguments:
+  {sync,check,download,huge}
+                        Action to perform
+
+options:
+  -h, --help            show this help message and exit
+  -V, --verbose         Enable verbose output
+  -F, --force           Force re-download of XML file even if it exists
+  -C, --nocleanup       Do not delete existing XML files in extracts/ before starting (default: delete)
+  -K, --keep-tmp        Keep temporary files after processing (default: delete)
+  -T, --tmp TMP         Temporary directory (default: tmp)
+  -M, --max MAX         Maximum number of bytes per output file (default: 1000000)
+</code></pre></div>
+<h2 id="actions">Actions<a class="headerlink" href="#actions" title="Permanent link">&para;</a></h2>
+<p>The first argument to the script must be one of the following actions:</p>
+<ul>
+<li><code>sync</code>: This is the main action. It performs the entire synchronization process, which includes downloading the XML file (if necessary) and splitting it into country-specific files.</li>
+<li><code>check</code>: This action checks the configuration and prints the temporary and extracts directories.</li>
+<li><code>download</code>: This action only downloads the PEPPOL business card XML file and saves it to the temporary directory.</li>
+<li><code>huge</code>: This action lists the largest XML files found in the <code>extracts/</code> directory.</li>
+</ul>
+<h2 id="options">Options<a class="headerlink" href="#options" title="Permanent link">&para;</a></h2>
+<ul>
+<li><code>-h</code>, <code>--help</code>: Shows the help message and exits.</li>
+<li><code>-V</code>, <code>--verbose</code>: Enables verbose output, providing more detailed information about the script's execution.</li>
+<li><code>-F</code>, <code>--force</code>: Forces the script to re-download the main XML file, even if a local copy already exists.</li>
+<li><code>-C</code>, <code>--nocleanup</code>: By default, the script deletes all existing XML files in the <code>extracts/</code> directory before starting a new sync. This flag prevents the cleanup, preserving the existing files.</li>
+<li><code>-K</code>, <code>--keep-tmp</code>: Prevents the script from deleting temporary files (like the downloaded XML) after processing is complete.</li>
+<li><code>-T</code>, <code>--tmp TMP</code>: Specifies the temporary directory to use for downloading files. Defaults to <code>tmp</code>.</li>
+<li><code>-M</code>, <code>--max MAX</code>: Sets the maximum size in bytes for each output XML file. When a file exceeds this size, a new one is created. Defaults to 2000000 (2MB).</li>
+</ul>
 <h2 id="functionality">Functionality<a class="headerlink" href="#functionality" title="Permanent link">&para;</a></h2>
 <p>The <code>PeppolSync</code> class handles the entire workflow:</p>
 <ol>
@@ -551,7 +588,6 @@
 </li>
 </ol>
 <h2 id="running-the-sync-tool">Running the sync tool<a class="headerlink" href="#running-the-sync-tool" title="Permanent link">&para;</a></h2>
-<p>cf <a href="../usage/">Usage</a></p>
 <div class="highlight"><pre><span></span><code><span class="c1"># Full sync: download + process XML (recommended for first run)</span>
 python3<span class="w"> </span>peppol_sync.py<span class="w"> </span>sync
 
@@ -648,7 +684,7 @@ pip<span class="w"> </span>install<span class="w"> </span>lxml
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      &copy; 2025 peppol_sync Docs &bull; pforret
+      &copy; 2025 peppol_per_country Docs by pforret  
     </div>
   
   
