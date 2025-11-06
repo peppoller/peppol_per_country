@@ -24,7 +24,7 @@ PEPPOL Per Country is a Python-based tool that synchronizes PEPPOL business dire
 - Deploys `site/` directory to GitHub Pages
 - Triggered on push to main branch
 
-## sparse-checkout
+## Sparse Checkout
 
 You can 'subscribe' to only the .xml files **for 1 specific country** (so not the full 2+GB of extract files) , using [git sparse-checkout](sparse.md).
 
