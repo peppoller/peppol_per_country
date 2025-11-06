@@ -11,8 +11,8 @@ Here is how you can do a sparse checkout for just the data for Norway (`NO`).
     This special clone command creates the `.git` directory with all the repository history but doesn't pull the actual files yet.
 
     ```bash
-    git clone --filter=blob:none --no-checkout https://github.com/peppol-io/peppol-sync.git
-    cd peppol-sync
+    git clone --filter=blob:none --no-checkout https://github.com/peppoller/peppol_per_country.git
+    cd peppol_per_country
     ```
 
 2.  **Enable sparse checkout and define the directory you want:**

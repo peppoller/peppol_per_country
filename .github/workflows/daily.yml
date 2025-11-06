@@ -1,9 +1,9 @@
-name: Daily Update
+name: Peppol Business Cards Update
 
 # Controls when the workflow will run
 on:
   schedule:
-    - cron: "15 9 * * *"
+    - cron: "15 8  * * *"
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -45,7 +45,7 @@ jobs:
             git status -s > extracts/git_diff.txt
             git add extracts/git_diff.txt
             TIMESTAMP=$(date -u)
-            git commit -m "${TIMESTAMP} < peppol_sync automated update"
+            git commit -m "${TIMESTAMP} -- peppoller/peppol_per_country update"
             git pull --rebase
             git push
             echo "Changes committed and pushed"
