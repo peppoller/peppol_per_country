@@ -1,7 +1,9 @@
+![GitHub Tag](https://img.shields.io/github/v/tag/peppoller/peppol_per_country)
 ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/peppoller/peppol_per_country/daily.yml)
 ![GitHub last commit](https://img.shields.io/github/last-commit/peppoller/peppol_per_country)
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/w/peppoller/peppol_per_country)
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/peppoller/peppol_per_country)
+![GitHub repo size](https://img.shields.io/github/repo-size/peppoller/peppol_per_country)
 
 
 # Peppol Per Country
@@ -17,14 +19,14 @@ It allows for
 
 ## Core Technology
 
-- [peppol_sync.py](peppol_sync.md)
+- [peppol_sync.py](https://peppoller.github.io/peppol_per_country/peppol_sync/)
 - Python 3.x with `lxml` for XML processing
-- [GitHub Actions](github.md) for daily automated sync
-- [Project Documentation](documentation.md) : MkDocs with Material theme (using [pforret/mkdox](https://github.ciom/pforret/mkdox) )
+- [GitHub Actions](https://peppoller.github.io/peppol_per_country/github/) for daily automated sync
+- [Project Documentation](https://peppoller.github.io/peppol_per_country/documentation/) : MkDocs with Material theme (using [pforret/mkdox](https://github.ciom/pforret/mkdox) )
 
 ## Sparse Checkout
 
-You can 'subscribe' to only the .xml files **for 1 specific country** (so not the full 2+GB of extract files) , using [git sparse-checkout](sparse.md).
+You can 'subscribe' to only the .xml files **for 1 specific country** (so not the full 2+GB of extract files) , using [git sparse-checkout](https://peppoller.github.io/peppol_per_country/sparse/).
 
 ![GitHub Repo stars](https://img.shields.io/github/stars/peppoller/peppol_per_country)
  [github.com/peppoller/peppol_per_country](https://github.com/peppoller/peppol_per_country)
