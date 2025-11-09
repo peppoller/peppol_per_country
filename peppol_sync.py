@@ -269,8 +269,8 @@ class PeppolSync:
 
     def generate_report(self):
         """Generate a markdown report of the sync operation"""
-        self.announce("Generating report")
         report_path = self.docs_dir / "report.md"
+        self.announce("Generating report: {report_path}" )
 
         with open(report_path, "w", encoding="utf-8") as f:
             f.write("# PEPPOL Sync Report\n\n")
