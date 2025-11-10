@@ -9,6 +9,7 @@ import os
 from pathlib import Path
 from datetime import datetime
 from collections import defaultdict
+import re
 try:
     from lxml import etree as ET
 except ImportError:
@@ -180,6 +181,8 @@ class PeppolSync:
                     if "<businesscard>" in buffer:
                         header_end = buffer.find("<businesscard>")
                         header = buffer[:header_end]
+                        # Remove creationdt from header to make it static
+                        header = re.sub(r'creationdt="[^"]*"', '', header)
                         buffer = buffer[header_end:]
                         header_found = True
 
