@@ -50,7 +50,8 @@ jobs:
             git status -s > extracts/git_diff.txt
             git add extracts/git_diff.txt
             TIMESTAMP=$(date -u)
-            git commit -m "${TIMESTAMP} -- peppoller/peppol_per_country daily update"
+            VERSION=$(cat VERSION.md | head -n1 | tr -d '\n')
+            git commit -m "${TIMESTAMP} -- peppoller/peppol_per_country -- daily update v${VERSION}"
             git pull --rebase
             git push
             echo "Changes committed and pushed"
