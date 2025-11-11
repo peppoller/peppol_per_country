@@ -21,6 +21,10 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      # Record start time
+      - name: Record start time
+        run: echo "START_TIME=$(date +%s)" >> $GITHUB_ENV
+
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
 
@@ -56,3 +60,13 @@ jobs:
             git push
             echo "Changes committed and pushed"
           fi
+
+      # Log total execution time
+      - name: Log execution time
+        if: always()
+        run: |
+          END_TIME=$(date +%s)
+          DURATION=$((END_TIME - START_TIME))
+          MINUTES=$((DURATION / 60))
+          SECONDS=$((DURATION % 60))
+          echo "Total execution time: ${MINUTES}m ${SECONDS}s (${DURATION} seconds)"
