@@ -3,7 +3,7 @@ name: Daily Peppol Business Cards Update
 # Controls when the workflow will run
 on:
   schedule:
-    - cron: "15 8  * * *"
+    - cron: "15 0  * * *"
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -35,7 +35,7 @@ jobs:
 
       # Download and split XML into country/month files
       - name: Download from directory.peppol.eu and split in subfiles
-        run: python3 peppol_sync.py sync -V
+        run: python3 peppol_sync.py sync
 
       # Commit and push changes if any
       - name: Commit and push changes
