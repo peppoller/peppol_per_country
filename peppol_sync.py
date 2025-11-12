@@ -31,6 +31,7 @@ class PeppolSync:
         self.verbose = verbose
         self.extracts_dir = Path("extracts")
         self.docs_dir = Path("docs")
+        self.log_dir = Path("log")
         self.file_stats = {}
         self.max_bytes = max_bytes
         self.keep_tmp = keep_tmp
@@ -38,14 +39,16 @@ class PeppolSync:
         # Create directories
         self.tmp_dir.mkdir(exist_ok=True)
         self.extracts_dir.mkdir(exist_ok=True)
+        self.log_dir.mkdir(exist_ok=True)
 
         # Statistics
         self.stats = defaultdict(int)
         self.file_count = 0  # Track number of output files created
 
         # Setup logging
-        log_file = self.extracts_dir / "peppol_sync.log"
+        log_file = self.log_dir / "peppol_sync.log"
         self.log_handle = open(log_file, "w") # Changed to 'w' to start empty
+        self.log(f"Date: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
         self.log(f"User: {getpass.getuser()}, Host: {socket.gethostname()}, CWD: {os.getcwd()}")
 
     def log(self, message: str):
