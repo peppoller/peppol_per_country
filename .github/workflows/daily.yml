@@ -46,13 +46,16 @@ jobs:
         run: |
           git config user.name "PeppolSync Daily"
           git config user.email "actions@users.noreply.github.com"
+          [[ ! -d log ]] && mkdir log
           git add extracts/
           git add docs/
+          git add log/
           if git diff --quiet --cached; then
             echo "No changes to commit"
           else
-            git status -s > extracts/git_diff.txt
-            git add extracts/git_diff.txt
+            git status -s > log/git_status.txt
+            git diff --numstat > log/git_diff.txt
+            git add log/
             TIMESTAMP=$(date -u)
             VERSION=$(cat VERSION.md | head -n1 | tr -d '\n')
             git commit -m "${TIMESTAMP} -- peppoller/peppol_per_country -- daily update v${VERSION}"
