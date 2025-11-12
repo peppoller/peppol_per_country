@@ -519,17 +519,23 @@
 <h2 id="daily-sync-workflow">Daily Sync Workflow<a class="headerlink" href="#daily-sync-workflow" title="Permanent link">&para;</a></h2>
 <ul>
 <li>via <code>.github/workflows/daily.yml</code></li>
-<li>Runs at 09:15 UTC daily</li>
-<li>Executes <code>python3 peppol_sync.py sync -V</code></li>
-<li>Commits and pushes changes to <code>extracts/</code> automatically</li>
-<li>Creates <code>extracts/git_diff.txt</code> with change summary</li>
-<li>takes +- 5 minutes</li>
+<li>Runs at 00:15 UTC daily (cron: "15 0 * * *")</li>
+<li>Executes <code>python3 peppol_sync.py sync</code></li>
+<li>Requires <code>contents: write</code> permission for GITHUB_TOKEN</li>
+<li>Commits and pushes changes to <code>extracts/</code>, <code>docs/</code>, and <code>log/</code> directories</li>
+<li>Creates <code>log/git_status.txt</code> with git status summary</li>
+<li>Creates <code>log/git_diff.txt</code> with detailed change statistics</li>
+<li>Commit message includes timestamp and version from <code>VERSION.md</code></li>
+<li>Logs total execution time at the end of the workflow</li>
+<li>Takes approximately 5 minutes</li>
 </ul>
 <h2 id="pages-deployment">Pages Deployment<a class="headerlink" href="#pages-deployment" title="Permanent link">&para;</a></h2>
 <ul>
 <li>via <code>.github/workflows/static.yml</code></li>
 <li>Deploys <code>site/</code> directory to GitHub Pages</li>
-<li>Triggered on push to main branch</li>
+<li>Triggered on push to main branch when <code>site/**</code> files change</li>
+<li>Uses sparse checkout to only fetch the <code>site/</code> directory (optimizes checkout performance)</li>
+<li>Requires <code>contents: read</code>, <code>pages: write</code>, and <code>id-token: write</code> permissions</li>
 </ul>
 <h2 id="github-action-testing">GitHub action testing<a class="headerlink" href="#github-action-testing" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><span class="c1"># uses https://github.com/nektos/act</span>
