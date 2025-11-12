@@ -537,6 +537,15 @@
 <li>Uses sparse checkout to only fetch the <code>site/</code> directory (optimizes checkout performance)</li>
 <li>Requires <code>contents: read</code>, <code>pages: write</code>, and <code>id-token: write</code> permissions</li>
 </ul>
+<div class="highlight"><pre><span></span><code><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Checkout</span><span class="nv"> </span><span class="s">(sparse:</span><span class="nv"> </span><span class="s">site/)&quot;</span>
+<span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
+<span class="w">        </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">fetch-depth</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="w">          </span><span class="nt">filter</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;blob:none&#39;</span>
+<span class="w">          </span><span class="nt">sparse-checkout</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">            </span><span class="no">site</span>
+<span class="w">          </span><span class="nt">sparse-checkout-cone-mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</code></pre></div>
 <h2 id="github-action-testing">GitHub action testing<a class="headerlink" href="#github-action-testing" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><span class="c1"># uses https://github.com/nektos/act</span>
 <span class="c1"># on MacOS: brew install act</span>

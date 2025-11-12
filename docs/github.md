@@ -21,6 +21,17 @@
 - Uses sparse checkout to only fetch the `site/` directory (optimizes checkout performance)
 - Requires `contents: read`, `pages: write`, and `id-token: write` permissions
 
+```yaml
+      - name: "Checkout (sparse: site/)"
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          filter: 'blob:none'
+          sparse-checkout: |
+            site
+          sparse-checkout-cone-mode: true
+```
+
 ## GitHub action testing
 
 ```bash
