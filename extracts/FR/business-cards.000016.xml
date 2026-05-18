@@ -1,6 +1,581 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <root xmlns="urn:peppol:schema:pd:businesscard-generic:2025:03" version="3"  codeListSupported="9.5">
     <businesscard>
+      <participant scheme="iso6523-actorid-upis" value="0225:100113596"/>
+      <entity countrycode="FR">
+        <name name="LAB CONSULTING" language="fr"/>
+        <id scheme="iso6523-actorid-upis" value="0002:100113596"/>
+        <additionalinfo>FR_ASSUJETTI_ACTIVE</additionalinfo>
+      </entity>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Credit Note V3" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Credit Note CIUS" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Invoice V3" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Invoice CIUS" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:peppol:doctype:pdf+xml##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:Factur-X:1.0::D22B" displayname="France Factur-X" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossDomainAcknowledgementAndResponse:100::CrossDomainAcknowledgementAndResponse##urn:peppol:france:billing:cdv:1.0::D22B" displayname="France CDAR" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::D22B" displayname="France CII Invoice CIUS" state="act"/>
+    </businesscard>
+    <businesscard>
+      <participant scheme="iso6523-actorid-upis" value="0225:100113745"/>
+      <entity countrycode="FR">
+        <name name="[ND]" language="fr"/>
+        <id scheme="0002" value="100113745"/>
+        <additionalinfo>FR_ASSUJETTI_ACTIVE</additionalinfo>
+        <regdate>2026-04-21</regdate>
+      </entity>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:ApplicationResponse-2::ApplicationResponse##urn:fdc:peppol.eu:poacc:trns:invoice_response:3::2.1" displayname="Peppol Invoice Response transaction 3.0" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Credit Note V3" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Credit Note CIUS" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:extended:1.0::2.1" displayname="France UBL Credit Note Extension" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Invoice V3" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Invoice CIUS" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:extended:1.0::2.1" displayname="France UBL Invoice Extension" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:peppol:doctype:pdf+xml##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:Factur-X:1.0::D22B" displayname="France Factur-X" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossDomainAcknowledgementAndResponse:100::CrossDomainAcknowledgementAndResponse##urn:peppol:france:billing:cdv:1.0::D22B" displayname="France CDAR" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::D22B" displayname="France CII Invoice CIUS" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:extended:1.0::D22B" displayname="France CII Invoice Extension" state="act"/>
+    </businesscard>
+    <businesscard>
+      <participant scheme="iso6523-actorid-upis" value="0225:100113893"/>
+      <entity countrycode="FR">
+        <name name="HEROD IMMOBILIER" language="fr"/>
+        <id scheme="iso6523-actorid-upis" value="0002:100113893"/>
+        <additionalinfo>FR_ASSUJETTI_ACTIVE</additionalinfo>
+      </entity>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Credit Note V3" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Credit Note CIUS" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Invoice V3" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Invoice CIUS" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:peppol:doctype:pdf+xml##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:Factur-X:1.0::D22B" displayname="France Factur-X" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossDomainAcknowledgementAndResponse:100::CrossDomainAcknowledgementAndResponse##urn:peppol:france:billing:cdv:1.0::D22B" displayname="France CDAR" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::D22B" displayname="France CII Invoice CIUS" state="act"/>
+    </businesscard>
+    <businesscard>
+      <participant scheme="iso6523-actorid-upis" value="0225:100114297"/>
+      <entity countrycode="FR">
+        <name name="PC CARS" language="fr"/>
+        <id scheme="iso6523-actorid-upis" value="0002:100114297"/>
+        <additionalinfo>FR_ASSUJETTI_ACTIVE</additionalinfo>
+      </entity>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Credit Note V3" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Credit Note CIUS" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Invoice V3" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Invoice CIUS" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:peppol:doctype:pdf+xml##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:Factur-X:1.0::D22B" displayname="France Factur-X" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossDomainAcknowledgementAndResponse:100::CrossDomainAcknowledgementAndResponse##urn:peppol:france:billing:cdv:1.0::D22B" displayname="France CDAR" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::D22B" displayname="France CII Invoice CIUS" state="act"/>
+    </businesscard>
+    <businesscard>
+      <participant scheme="iso6523-actorid-upis" value="0225:100114826"/>
+      <entity countrycode="FR">
+        <name name="EI - Miranda Claudia" language="fr"/>
+        <id scheme="iso6523-actorid-upis" value="0002:100114826"/>
+        <additionalinfo>FR_ASSUJETTI_ACTIVE</additionalinfo>
+      </entity>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Credit Note V3" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Credit Note CIUS" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Invoice V3" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Invoice CIUS" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:peppol:doctype:pdf+xml##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:Factur-X:1.0::D22B" displayname="France Factur-X" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossDomainAcknowledgementAndResponse:100::CrossDomainAcknowledgementAndResponse##urn:peppol:france:billing:cdv:1.0::D22B" displayname="France CDAR" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::D22B" displayname="France CII Invoice CIUS" state="act"/>
+    </businesscard>
+    <businesscard>
+      <participant scheme="iso6523-actorid-upis" value="0225:100114867"/>
+      <entity countrycode="FR">
+        <name name="Les Messagers" language="fr"/>
+        <id scheme="iso6523-actorid-upis" value="0002:100114867"/>
+        <additionalinfo>FR_ASSUJETTI_ACTIVE</additionalinfo>
+      </entity>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Credit Note V3" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Credit Note CIUS" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Invoice V3" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Invoice CIUS" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:peppol:doctype:pdf+xml##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:Factur-X:1.0::D22B" displayname="France Factur-X" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossDomainAcknowledgementAndResponse:100::CrossDomainAcknowledgementAndResponse##urn:peppol:france:billing:cdv:1.0::D22B" displayname="France CDAR" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::D22B" displayname="France CII Invoice CIUS" state="act"/>
+    </businesscard>
+    <businesscard>
+      <participant scheme="iso6523-actorid-upis" value="0225:100115252"/>
+      <entity countrycode="FR">
+        <name name="MDS" language="fr"/>
+        <id scheme="iso6523-actorid-upis" value="0002:100115252"/>
+        <additionalinfo>FR_ASSUJETTI_ACTIVE</additionalinfo>
+      </entity>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Credit Note V3" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Credit Note CIUS" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Invoice V3" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Invoice CIUS" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:peppol:doctype:pdf+xml##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:Factur-X:1.0::D22B" displayname="France Factur-X" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossDomainAcknowledgementAndResponse:100::CrossDomainAcknowledgementAndResponse##urn:peppol:france:billing:cdv:1.0::D22B" displayname="France CDAR" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::D22B" displayname="France CII Invoice CIUS" state="act"/>
+    </businesscard>
+    <businesscard>
+      <participant scheme="iso6523-actorid-upis" value="0225:100115385"/>
+      <entity countrycode="FR">
+        <name name="BLOOM ADMIN" language="fr"/>
+        <id scheme="0002" value="100115385"/>
+        <additionalinfo>FR_ASSUJETTI_ACTIVE</additionalinfo>
+        <regdate>2026-05-11</regdate>
+      </entity>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:ApplicationResponse-2::ApplicationResponse##urn:fdc:peppol.eu:poacc:trns:invoice_response:3::2.1" displayname="Peppol Invoice Response transaction 3.0" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Credit Note V3" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Credit Note CIUS" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:extended:1.0::2.1" displayname="France UBL Credit Note Extension" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Invoice V3" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Invoice CIUS" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:extended:1.0::2.1" displayname="France UBL Invoice Extension" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:peppol:doctype:pdf+xml##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:Factur-X:1.0::D22B" displayname="France Factur-X" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossDomainAcknowledgementAndResponse:100::CrossDomainAcknowledgementAndResponse##urn:peppol:france:billing:cdv:1.0::D22B" displayname="France CDAR" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::D22B" displayname="France CII Invoice CIUS" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:extended:1.0::D22B" displayname="France CII Invoice Extension" state="act"/>
+    </businesscard>
+    <businesscard>
+      <participant scheme="iso6523-actorid-upis" value="0225:100115401"/>
+      <entity countrycode="FR">
+        <name name="MARRALE PATRIMOINE" language="fr"/>
+        <id scheme="iso6523-actorid-upis" value="0002:100115401"/>
+        <additionalinfo>FR_ASSUJETTI_ACTIVE</additionalinfo>
+      </entity>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Credit Note V3" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Credit Note CIUS" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Invoice V3" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Invoice CIUS" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:peppol:doctype:pdf+xml##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:Factur-X:1.0::D22B" displayname="France Factur-X" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossDomainAcknowledgementAndResponse:100::CrossDomainAcknowledgementAndResponse##urn:peppol:france:billing:cdv:1.0::D22B" displayname="France CDAR" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::D22B" displayname="France CII Invoice CIUS" state="act"/>
+    </businesscard>
+    <businesscard>
+      <participant scheme="iso6523-actorid-upis" value="0225:100115617"/>
+      <entity countrycode="FR">
+        <name name="Bricklane Estate" language="fr"/>
+        <id scheme="iso6523-actorid-upis" value="0002:100115617"/>
+        <additionalinfo>FR_ASSUJETTI_ACTIVE</additionalinfo>
+      </entity>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Credit Note V3" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Credit Note CIUS" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Invoice V3" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Invoice CIUS" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:peppol:doctype:pdf+xml##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:Factur-X:1.0::D22B" displayname="France Factur-X" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossDomainAcknowledgementAndResponse:100::CrossDomainAcknowledgementAndResponse##urn:peppol:france:billing:cdv:1.0::D22B" displayname="France CDAR" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::D22B" displayname="France CII Invoice CIUS" state="act"/>
+    </businesscard>
+    <businesscard>
+      <participant scheme="iso6523-actorid-upis" value="0225:100115781"/>
+      <entity countrycode="FR">
+        <name name="KYOOBZ TRANSPORTS" language="fr"/>
+        <id scheme="iso6523-actorid-upis" value="0002:100115781"/>
+        <additionalinfo>FR_ASSUJETTI_ACTIVE</additionalinfo>
+      </entity>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Credit Note V3" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Credit Note CIUS" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Invoice V3" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Invoice CIUS" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:peppol:doctype:pdf+xml##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:Factur-X:1.0::D22B" displayname="France Factur-X" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossDomainAcknowledgementAndResponse:100::CrossDomainAcknowledgementAndResponse##urn:peppol:france:billing:cdv:1.0::D22B" displayname="France CDAR" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::D22B" displayname="France CII Invoice CIUS" state="act"/>
+    </businesscard>
+    <businesscard>
+      <participant scheme="iso6523-actorid-upis" value="0225:100115815"/>
+      <entity countrycode="FR">
+        <name name="MOB THEORY" language="fr"/>
+        <id scheme="iso6523-actorid-upis" value="0002:100115815"/>
+        <additionalinfo>FR_ASSUJETTI_ACTIVE</additionalinfo>
+      </entity>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Credit Note V3" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Credit Note CIUS" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Invoice V3" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Invoice CIUS" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:peppol:doctype:pdf+xml##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:Factur-X:1.0::D22B" displayname="France Factur-X" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossDomainAcknowledgementAndResponse:100::CrossDomainAcknowledgementAndResponse##urn:peppol:france:billing:cdv:1.0::D22B" displayname="France CDAR" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::D22B" displayname="France CII Invoice CIUS" state="act"/>
+    </businesscard>
+    <businesscard>
+      <participant scheme="iso6523-actorid-upis" value="0225:100116003"/>
+      <entity countrycode="FR">
+        <name name="THE OFF NOTE" language="fr"/>
+        <id scheme="iso6523-actorid-upis" value="0002:100116003"/>
+        <additionalinfo>FR_ASSUJETTI_ACTIVE</additionalinfo>
+      </entity>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Credit Note V3" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Credit Note CIUS" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Invoice V3" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Invoice CIUS" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:peppol:doctype:pdf+xml##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:Factur-X:1.0::D22B" displayname="France Factur-X" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossDomainAcknowledgementAndResponse:100::CrossDomainAcknowledgementAndResponse##urn:peppol:france:billing:cdv:1.0::D22B" displayname="France CDAR" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::D22B" displayname="France CII Invoice CIUS" state="act"/>
+    </businesscard>
+    <businesscard>
+      <participant scheme="iso6523-actorid-upis" value="0225:100116086"/>
+      <entity countrycode="FR">
+        <name name="CINQMARINE" language="fr"/>
+        <id scheme="iso6523-actorid-upis" value="0002:100116086"/>
+        <additionalinfo>FR_ASSUJETTI_ACTIVE</additionalinfo>
+      </entity>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Credit Note V3" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Credit Note CIUS" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Invoice V3" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Invoice CIUS" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:peppol:doctype:pdf+xml##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:Factur-X:1.0::D22B" displayname="France Factur-X" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossDomainAcknowledgementAndResponse:100::CrossDomainAcknowledgementAndResponse##urn:peppol:france:billing:cdv:1.0::D22B" displayname="France CDAR" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::D22B" displayname="France CII Invoice CIUS" state="act"/>
+    </businesscard>
+    <businesscard>
+      <participant scheme="iso6523-actorid-upis" value="0225:100116193"/>
+      <entity countrycode="FR">
+        <name name="LC performance" language="fr"/>
+        <id scheme="iso6523-actorid-upis" value="0002:100116193"/>
+        <additionalinfo>FR_ASSUJETTI_ACTIVE</additionalinfo>
+      </entity>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Credit Note V3" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Credit Note CIUS" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Invoice V3" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Invoice CIUS" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:peppol:doctype:pdf+xml##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:Factur-X:1.0::D22B" displayname="France Factur-X" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossDomainAcknowledgementAndResponse:100::CrossDomainAcknowledgementAndResponse##urn:peppol:france:billing:cdv:1.0::D22B" displayname="France CDAR" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::D22B" displayname="France CII Invoice CIUS" state="act"/>
+    </businesscard>
+    <businesscard>
+      <participant scheme="iso6523-actorid-upis" value="0225:100116243"/>
+      <entity countrycode="FR">
+        <name name="KLA Consulting" language="fr"/>
+        <id scheme="iso6523-actorid-upis" value="0002:100116243"/>
+        <additionalinfo>FR_ASSUJETTI_ACTIVE</additionalinfo>
+      </entity>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Credit Note V3" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Credit Note CIUS" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Invoice V3" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Invoice CIUS" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:peppol:doctype:pdf+xml##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:Factur-X:1.0::D22B" displayname="France Factur-X" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossDomainAcknowledgementAndResponse:100::CrossDomainAcknowledgementAndResponse##urn:peppol:france:billing:cdv:1.0::D22B" displayname="France CDAR" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::D22B" displayname="France CII Invoice CIUS" state="act"/>
+    </businesscard>
+    <businesscard>
+      <participant scheme="iso6523-actorid-upis" value="0225:100116359"/>
+      <entity countrycode="FR">
+        <name name="GOURMET STREET" language="fr"/>
+        <id scheme="iso6523-actorid-upis" value="0002:100116359"/>
+        <additionalinfo>FR_ASSUJETTI_ACTIVE</additionalinfo>
+      </entity>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Credit Note V3" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Credit Note CIUS" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Invoice V3" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Invoice CIUS" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:peppol:doctype:pdf+xml##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:Factur-X:1.0::D22B" displayname="France Factur-X" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossDomainAcknowledgementAndResponse:100::CrossDomainAcknowledgementAndResponse##urn:peppol:france:billing:cdv:1.0::D22B" displayname="France CDAR" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::D22B" displayname="France CII Invoice CIUS" state="act"/>
+    </businesscard>
+    <businesscard>
+      <participant scheme="iso6523-actorid-upis" value="0225:100116573"/>
+      <entity countrycode="FR">
+        <name name="BUTIKBUDDIES" language="fr"/>
+        <id scheme="iso6523-actorid-upis" value="0002:100116573"/>
+        <additionalinfo>FR_ASSUJETTI_ACTIVE</additionalinfo>
+      </entity>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Credit Note V3" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Credit Note CIUS" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Invoice V3" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Invoice CIUS" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:peppol:doctype:pdf+xml##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:Factur-X:1.0::D22B" displayname="France Factur-X" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossDomainAcknowledgementAndResponse:100::CrossDomainAcknowledgementAndResponse##urn:peppol:france:billing:cdv:1.0::D22B" displayname="France CDAR" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::D22B" displayname="France CII Invoice CIUS" state="act"/>
+    </businesscard>
+    <businesscard>
+      <participant scheme="iso6523-actorid-upis" value="0225:100116730"/>
+      <entity countrycode="FR">
+        <name name="SANATECH" language="fr"/>
+        <id scheme="0002" value="100116730"/>
+        <additionalinfo>FR_ASSUJETTI_ACTIVE</additionalinfo>
+        <regdate>2026-04-03</regdate>
+      </entity>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:ApplicationResponse-2::ApplicationResponse##urn:fdc:peppol.eu:poacc:trns:invoice_response:3::2.1" displayname="Peppol Invoice Response transaction 3.0" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Credit Note V3" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Credit Note CIUS" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:extended:1.0::2.1" displayname="France UBL Credit Note Extension" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Invoice V3" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Invoice CIUS" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:extended:1.0::2.1" displayname="France UBL Invoice Extension" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:peppol:doctype:pdf+xml##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:Factur-X:1.0::D22B" displayname="France Factur-X" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossDomainAcknowledgementAndResponse:100::CrossDomainAcknowledgementAndResponse##urn:peppol:france:billing:cdv:1.0::D22B" displayname="France CDAR" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::D22B" displayname="France CII Invoice CIUS" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:extended:1.0::D22B" displayname="France CII Invoice Extension" state="act"/>
+    </businesscard>
+    <businesscard>
+      <participant scheme="iso6523-actorid-upis" value="0225:100117225"/>
+      <entity countrycode="FR">
+        <name name="NANO2LIVE SOLUTIONS" language="fr"/>
+        <id scheme="iso6523-actorid-upis" value="0002:100117225"/>
+        <additionalinfo>FR_ASSUJETTI_ACTIVE</additionalinfo>
+      </entity>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Credit Note V3" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Credit Note CIUS" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Invoice V3" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Invoice CIUS" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:peppol:doctype:pdf+xml##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:Factur-X:1.0::D22B" displayname="France Factur-X" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossDomainAcknowledgementAndResponse:100::CrossDomainAcknowledgementAndResponse##urn:peppol:france:billing:cdv:1.0::D22B" displayname="France CDAR" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::D22B" displayname="France CII Invoice CIUS" state="act"/>
+    </businesscard>
+    <businesscard>
+      <participant scheme="iso6523-actorid-upis" value="0225:100117308"/>
+      <entity countrycode="FR">
+        <name name="MN INVEST" language="fr"/>
+        <id scheme="iso6523-actorid-upis" value="0002:100117308"/>
+        <additionalinfo>FR_ASSUJETTI_ACTIVE</additionalinfo>
+      </entity>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Credit Note V3" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Credit Note CIUS" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Invoice V3" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Invoice CIUS" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:peppol:doctype:pdf+xml##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:Factur-X:1.0::D22B" displayname="France Factur-X" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossDomainAcknowledgementAndResponse:100::CrossDomainAcknowledgementAndResponse##urn:peppol:france:billing:cdv:1.0::D22B" displayname="France CDAR" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::D22B" displayname="France CII Invoice CIUS" state="act"/>
+    </businesscard>
+    <businesscard>
+      <participant scheme="iso6523-actorid-upis" value="0225:100117456"/>
+      <entity countrycode="FR">
+        <name name="Grain" language="fr"/>
+        <id scheme="iso6523-actorid-upis" value="0002:100117456"/>
+        <additionalinfo>FR_ASSUJETTI_ACTIVE</additionalinfo>
+      </entity>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Credit Note V3" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Credit Note CIUS" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Invoice V3" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Invoice CIUS" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:peppol:doctype:pdf+xml##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:Factur-X:1.0::D22B" displayname="France Factur-X" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossDomainAcknowledgementAndResponse:100::CrossDomainAcknowledgementAndResponse##urn:peppol:france:billing:cdv:1.0::D22B" displayname="France CDAR" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::D22B" displayname="France CII Invoice CIUS" state="act"/>
+    </businesscard>
+    <businesscard>
+      <participant scheme="iso6523-actorid-upis" value="0225:100117498"/>
+      <entity countrycode="FR">
+        <name name="[ND]" language="fr"/>
+        <id scheme="0002" value="100117498"/>
+        <additionalinfo>FR_ASSUJETTI_ACTIVE</additionalinfo>
+        <regdate>2026-04-23</regdate>
+      </entity>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:ApplicationResponse-2::ApplicationResponse##urn:fdc:peppol.eu:poacc:trns:invoice_response:3::2.1" displayname="Peppol Invoice Response transaction 3.0" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Credit Note V3" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Credit Note CIUS" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:extended:1.0::2.1" displayname="France UBL Credit Note Extension" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Invoice V3" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Invoice CIUS" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:extended:1.0::2.1" displayname="France UBL Invoice Extension" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:peppol:doctype:pdf+xml##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:Factur-X:1.0::D22B" displayname="France Factur-X" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossDomainAcknowledgementAndResponse:100::CrossDomainAcknowledgementAndResponse##urn:peppol:france:billing:cdv:1.0::D22B" displayname="France CDAR" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::D22B" displayname="France CII Invoice CIUS" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:extended:1.0::D22B" displayname="France CII Invoice Extension" state="act"/>
+    </businesscard>
+    <businesscard>
+      <participant scheme="iso6523-actorid-upis" value="0225:100117639"/>
+      <entity countrycode="FR">
+        <name name="SCI ML" language="fr"/>
+        <id scheme="iso6523-actorid-upis" value="0002:100117639"/>
+        <additionalinfo>FR_ASSUJETTI_ACTIVE</additionalinfo>
+      </entity>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Credit Note V3" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Credit Note CIUS" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Invoice V3" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Invoice CIUS" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:peppol:doctype:pdf+xml##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:Factur-X:1.0::D22B" displayname="France Factur-X" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossDomainAcknowledgementAndResponse:100::CrossDomainAcknowledgementAndResponse##urn:peppol:france:billing:cdv:1.0::D22B" displayname="France CDAR" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::D22B" displayname="France CII Invoice CIUS" state="act"/>
+    </businesscard>
+    <businesscard>
+      <participant scheme="iso6523-actorid-upis" value="0225:100117787"/>
+      <entity countrycode="FR">
+        <name name="SDK CONSULTING" language="fr"/>
+        <id scheme="iso6523-actorid-upis" value="0002:100117787"/>
+        <additionalinfo>FR_ASSUJETTI_ACTIVE</additionalinfo>
+      </entity>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Credit Note V3" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Credit Note CIUS" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Invoice V3" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Invoice CIUS" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:peppol:doctype:pdf+xml##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:Factur-X:1.0::D22B" displayname="France Factur-X" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossDomainAcknowledgementAndResponse:100::CrossDomainAcknowledgementAndResponse##urn:peppol:france:billing:cdv:1.0::D22B" displayname="France CDAR" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::D22B" displayname="France CII Invoice CIUS" state="act"/>
+    </businesscard>
+    <businesscard>
+      <participant scheme="iso6523-actorid-upis" value="0225:100117803"/>
+      <entity countrycode="FR">
+        <name name="New Horizons" language="fr"/>
+        <id scheme="iso6523-actorid-upis" value="0002:100117803"/>
+        <additionalinfo>FR_ASSUJETTI_ACTIVE</additionalinfo>
+      </entity>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Credit Note V3" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Credit Note CIUS" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Invoice V3" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Invoice CIUS" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:peppol:doctype:pdf+xml##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:Factur-X:1.0::D22B" displayname="France Factur-X" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossDomainAcknowledgementAndResponse:100::CrossDomainAcknowledgementAndResponse##urn:peppol:france:billing:cdv:1.0::D22B" displayname="France CDAR" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::D22B" displayname="France CII Invoice CIUS" state="act"/>
+    </businesscard>
+    <businesscard>
+      <participant scheme="iso6523-actorid-upis" value="0225:100117852"/>
+      <entity countrycode="FR">
+        <name name="MINET PARIS" language="fr"/>
+        <id scheme="iso6523-actorid-upis" value="0002:100117852"/>
+        <additionalinfo>FR_ASSUJETTI_ACTIVE</additionalinfo>
+      </entity>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Credit Note V3" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Credit Note CIUS" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Invoice V3" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Invoice CIUS" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:peppol:doctype:pdf+xml##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:Factur-X:1.0::D22B" displayname="France Factur-X" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossDomainAcknowledgementAndResponse:100::CrossDomainAcknowledgementAndResponse##urn:peppol:france:billing:cdv:1.0::D22B" displayname="France CDAR" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::D22B" displayname="France CII Invoice CIUS" state="act"/>
+    </businesscard>
+    <businesscard>
+      <participant scheme="iso6523-actorid-upis" value="0225:100118074"/>
+      <entity countrycode="FR">
+        <name name="EI - Bekkari Michel " language="fr"/>
+        <id scheme="iso6523-actorid-upis" value="0002:100118074"/>
+        <additionalinfo>FR_ASSUJETTI_ACTIVE</additionalinfo>
+      </entity>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Credit Note V3" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Credit Note CIUS" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Invoice V3" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Invoice CIUS" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:peppol:doctype:pdf+xml##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:Factur-X:1.0::D22B" displayname="France Factur-X" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossDomainAcknowledgementAndResponse:100::CrossDomainAcknowledgementAndResponse##urn:peppol:france:billing:cdv:1.0::D22B" displayname="France CDAR" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::D22B" displayname="France CII Invoice CIUS" state="act"/>
+    </businesscard>
+    <businesscard>
+      <participant scheme="iso6523-actorid-upis" value="0225:100118108"/>
+      <entity countrycode="FR">
+        <name name="MONSIEUR ANTHONY PORNET" language="fr"/>
+        <id scheme="0002" value="100118108"/>
+        <additionalinfo>FR_ASSUJETTI_ACTIVE</additionalinfo>
+        <regdate>2026-05-10</regdate>
+      </entity>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:ApplicationResponse-2::ApplicationResponse##urn:fdc:peppol.eu:poacc:trns:invoice_response:3::2.1" displayname="Peppol Invoice Response transaction 3.0" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Credit Note V3" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Credit Note CIUS" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:extended:1.0::2.1" displayname="France UBL Credit Note Extension" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Invoice V3" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Invoice CIUS" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:extended:1.0::2.1" displayname="France UBL Invoice Extension" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:peppol:doctype:pdf+xml##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:Factur-X:1.0::D22B" displayname="France Factur-X" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossDomainAcknowledgementAndResponse:100::CrossDomainAcknowledgementAndResponse##urn:peppol:france:billing:cdv:1.0::D22B" displayname="France CDAR" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::D22B" displayname="France CII Invoice CIUS" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:extended:1.0::D22B" displayname="France CII Invoice Extension" state="act"/>
+    </businesscard>
+    <businesscard>
+      <participant scheme="iso6523-actorid-upis" value="0225:100118447"/>
+      <entity countrycode="FR">
+        <name name="[ND]" language="fr"/>
+        <id scheme="0002" value="100118447"/>
+        <additionalinfo>FR_ASSUJETTI_ACTIVE</additionalinfo>
+        <regdate>2026-04-28</regdate>
+      </entity>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:ApplicationResponse-2::ApplicationResponse##urn:fdc:peppol.eu:poacc:trns:invoice_response:3::2.1" displayname="Peppol Invoice Response transaction 3.0" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Credit Note V3" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Credit Note CIUS" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:extended:1.0::2.1" displayname="France UBL Credit Note Extension" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Invoice V3" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Invoice CIUS" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:extended:1.0::2.1" displayname="France UBL Invoice Extension" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:peppol:doctype:pdf+xml##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:Factur-X:1.0::D22B" displayname="France Factur-X" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossDomainAcknowledgementAndResponse:100::CrossDomainAcknowledgementAndResponse##urn:peppol:france:billing:cdv:1.0::D22B" displayname="France CDAR" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::D22B" displayname="France CII Invoice CIUS" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:extended:1.0::D22B" displayname="France CII Invoice Extension" state="act"/>
+    </businesscard>
+    <businesscard>
+      <participant scheme="iso6523-actorid-upis" value="0225:100118496"/>
+      <entity countrycode="FR">
+        <name name="Hubble Conseil" language="fr"/>
+        <id scheme="iso6523-actorid-upis" value="0002:100118496"/>
+        <additionalinfo>FR_ASSUJETTI_ACTIVE</additionalinfo>
+      </entity>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Credit Note V3" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Credit Note CIUS" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Invoice V3" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Invoice CIUS" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:peppol:doctype:pdf+xml##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:Factur-X:1.0::D22B" displayname="France Factur-X" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossDomainAcknowledgementAndResponse:100::CrossDomainAcknowledgementAndResponse##urn:peppol:france:billing:cdv:1.0::D22B" displayname="France CDAR" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::D22B" displayname="France CII Invoice CIUS" state="act"/>
+    </businesscard>
+    <businesscard>
+      <participant scheme="iso6523-actorid-upis" value="0225:100118587"/>
+      <entity countrycode="FR">
+        <name name="MADAME NATY COSTE" language="fr"/>
+        <id scheme="0002" value="100118587"/>
+        <additionalinfo>FR_ASSUJETTI_ACTIVE</additionalinfo>
+        <regdate>2026-05-10</regdate>
+      </entity>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:ApplicationResponse-2::ApplicationResponse##urn:fdc:peppol.eu:poacc:trns:invoice_response:3::2.1" displayname="Peppol Invoice Response transaction 3.0" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Credit Note V3" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Credit Note CIUS" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:extended:1.0::2.1" displayname="France UBL Credit Note Extension" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Invoice V3" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Invoice CIUS" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:extended:1.0::2.1" displayname="France UBL Invoice Extension" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:peppol:doctype:pdf+xml##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:Factur-X:1.0::D22B" displayname="France Factur-X" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossDomainAcknowledgementAndResponse:100::CrossDomainAcknowledgementAndResponse##urn:peppol:france:billing:cdv:1.0::D22B" displayname="France CDAR" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::D22B" displayname="France CII Invoice CIUS" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:extended:1.0::D22B" displayname="France CII Invoice Extension" state="act"/>
+    </businesscard>
+    <businesscard>
+      <participant scheme="iso6523-actorid-upis" value="0225:100118850"/>
+      <entity countrycode="FR">
+        <name name="Crevia" language="fr"/>
+        <id scheme="iso6523-actorid-upis" value="0002:100118850"/>
+        <additionalinfo>FR_ASSUJETTI_ACTIVE</additionalinfo>
+      </entity>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Credit Note V3" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Credit Note CIUS" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Invoice V3" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Invoice CIUS" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:peppol:doctype:pdf+xml##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:Factur-X:1.0::D22B" displayname="France Factur-X" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossDomainAcknowledgementAndResponse:100::CrossDomainAcknowledgementAndResponse##urn:peppol:france:billing:cdv:1.0::D22B" displayname="France CDAR" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::D22B" displayname="France CII Invoice CIUS" state="act"/>
+    </businesscard>
+    <businesscard>
+      <participant scheme="iso6523-actorid-upis" value="0225:100118868"/>
+      <entity countrycode="FR">
+        <name name="R UAB SAS" language="fr"/>
+        <id scheme="iso6523-actorid-upis" value="0002:100118868"/>
+        <additionalinfo>FR_ASSUJETTI_ACTIVE</additionalinfo>
+      </entity>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Credit Note V3" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Credit Note CIUS" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Invoice V3" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Invoice CIUS" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:peppol:doctype:pdf+xml##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:Factur-X:1.0::D22B" displayname="France Factur-X" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossDomainAcknowledgementAndResponse:100::CrossDomainAcknowledgementAndResponse##urn:peppol:france:billing:cdv:1.0::D22B" displayname="France CDAR" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::D22B" displayname="France CII Invoice CIUS" state="act"/>
+    </businesscard>
+    <businesscard>
+      <participant scheme="iso6523-actorid-upis" value="0225:100119114"/>
+      <entity countrycode="FR">
+        <name name="RLOU Consulting" language="fr"/>
+        <id scheme="iso6523-actorid-upis" value="0002:100119114"/>
+        <additionalinfo>FR_ASSUJETTI_ACTIVE</additionalinfo>
+      </entity>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Credit Note V3" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Credit Note CIUS" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Invoice V3" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Invoice CIUS" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:peppol:doctype:pdf+xml##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:Factur-X:1.0::D22B" displayname="France Factur-X" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossDomainAcknowledgementAndResponse:100::CrossDomainAcknowledgementAndResponse##urn:peppol:france:billing:cdv:1.0::D22B" displayname="France CDAR" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::D22B" displayname="France CII Invoice CIUS" state="act"/>
+    </businesscard>
+    <businesscard>
+      <participant scheme="iso6523-actorid-upis" value="0225:100119254"/>
+      <entity countrycode="FR">
+        <name name="IBF BATIMENT" language="fr"/>
+        <id scheme="iso6523-actorid-upis" value="0002:100119254"/>
+        <additionalinfo>FR_ASSUJETTI_ACTIVE</additionalinfo>
+      </entity>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Credit Note V3" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Credit Note CIUS" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Invoice V3" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Invoice CIUS" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:peppol:doctype:pdf+xml##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:Factur-X:1.0::D22B" displayname="France Factur-X" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossDomainAcknowledgementAndResponse:100::CrossDomainAcknowledgementAndResponse##urn:peppol:france:billing:cdv:1.0::D22B" displayname="France CDAR" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::D22B" displayname="France CII Invoice CIUS" state="act"/>
+    </businesscard>
+    <businesscard>
       <participant scheme="iso6523-actorid-upis" value="0225:100119700"/>
       <entity countrycode="FR">
         <name name="[ND]" language="fr"/>
@@ -1735,6 +2310,21 @@
       <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::D22B" displayname="France CII Invoice CIUS" state="act"/>
     </businesscard>
     <businesscard>
+      <participant scheme="iso6523-actorid-upis" value="0225:100135367"/>
+      <entity countrycode="FR">
+        <name name="EI - Falgon Mathéo" language="fr"/>
+        <id scheme="iso6523-actorid-upis" value="0002:100135367"/>
+        <additionalinfo>FR_ASSUJETTI_ACTIVE</additionalinfo>
+      </entity>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Credit Note V3" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Credit Note CIUS" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Invoice V3" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Invoice CIUS" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:peppol:doctype:pdf+xml##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:Factur-X:1.0::D22B" displayname="France Factur-X" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossDomainAcknowledgementAndResponse:100::CrossDomainAcknowledgementAndResponse##urn:peppol:france:billing:cdv:1.0::D22B" displayname="France CDAR" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::D22B" displayname="France CII Invoice CIUS" state="act"/>
+    </businesscard>
+    <businesscard>
       <participant scheme="iso6523-actorid-upis" value="0225:100135482"/>
       <entity countrycode="FR">
         <name name="VD INVEST" language="fr"/>
@@ -2174,6 +2764,21 @@
       <entity countrycode="FR">
         <name name="EI - Abdellaoui Faris / Ascendia" language="fr"/>
         <id scheme="iso6523-actorid-upis" value="0002:100138411"/>
+        <additionalinfo>FR_ASSUJETTI_ACTIVE</additionalinfo>
+      </entity>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Credit Note V3" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Credit Note CIUS" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Invoice V3" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Invoice CIUS" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:peppol:doctype:pdf+xml##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:Factur-X:1.0::D22B" displayname="France Factur-X" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossDomainAcknowledgementAndResponse:100::CrossDomainAcknowledgementAndResponse##urn:peppol:france:billing:cdv:1.0::D22B" displayname="France CDAR" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::D22B" displayname="France CII Invoice CIUS" state="act"/>
+    </businesscard>
+    <businesscard>
+      <participant scheme="iso6523-actorid-upis" value="0225:100138908"/>
+      <entity countrycode="FR">
+        <name name="00SOURCE" language="fr"/>
+        <id scheme="iso6523-actorid-upis" value="0002:100138908"/>
         <additionalinfo>FR_ASSUJETTI_ACTIVE</additionalinfo>
       </entity>
       <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Credit Note V3" state="act"/>
@@ -10533,6 +11138,21 @@
       <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::D22B" displayname="France CII Invoice CIUS" state="act"/>
     </businesscard>
     <businesscard>
+      <participant scheme="iso6523-actorid-upis" value="0225:100224724"/>
+      <entity countrycode="FR">
+        <name name="RAPIDS" language="fr"/>
+        <id scheme="iso6523-actorid-upis" value="0002:100224724"/>
+        <additionalinfo>FR_ASSUJETTI_ACTIVE</additionalinfo>
+      </entity>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Credit Note V3" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Credit Note CIUS" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Invoice V3" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Invoice CIUS" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:peppol:doctype:pdf+xml##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:Factur-X:1.0::D22B" displayname="France Factur-X" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossDomainAcknowledgementAndResponse:100::CrossDomainAcknowledgementAndResponse##urn:peppol:france:billing:cdv:1.0::D22B" displayname="France CDAR" state="act"/>
+      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::D22B" displayname="France CII Invoice CIUS" state="act"/>
+    </businesscard>
+    <businesscard>
       <participant scheme="iso6523-actorid-upis" value="0225:100224773"/>
       <entity countrycode="FR">
         <name name="PAMPV Holding" language="fr"/>
@@ -13309,636 +13929,6 @@
       <entity countrycode="FR">
         <name name="EI - Lamberton Kevin / KL Ops &amp; Strategy" language="fr"/>
         <id scheme="iso6523-actorid-upis" value="0002:100256593"/>
-        <additionalinfo>FR_ASSUJETTI_ACTIVE</additionalinfo>
-      </entity>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Credit Note V3" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Credit Note CIUS" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Invoice V3" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Invoice CIUS" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:peppol:doctype:pdf+xml##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:Factur-X:1.0::D22B" displayname="France Factur-X" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossDomainAcknowledgementAndResponse:100::CrossDomainAcknowledgementAndResponse##urn:peppol:france:billing:cdv:1.0::D22B" displayname="France CDAR" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::D22B" displayname="France CII Invoice CIUS" state="act"/>
-    </businesscard>
-    <businesscard>
-      <participant scheme="iso6523-actorid-upis" value="0225:100256619"/>
-      <entity countrycode="FR">
-        <name name="Import by V T" language="fr"/>
-        <id scheme="iso6523-actorid-upis" value="0002:100256619"/>
-        <additionalinfo>FR_ASSUJETTI_ACTIVE</additionalinfo>
-      </entity>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Credit Note V3" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Credit Note CIUS" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Invoice V3" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Invoice CIUS" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:peppol:doctype:pdf+xml##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:Factur-X:1.0::D22B" displayname="France Factur-X" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossDomainAcknowledgementAndResponse:100::CrossDomainAcknowledgementAndResponse##urn:peppol:france:billing:cdv:1.0::D22B" displayname="France CDAR" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::D22B" displayname="France CII Invoice CIUS" state="act"/>
-    </businesscard>
-    <businesscard>
-      <participant scheme="iso6523-actorid-upis" value="0225:100256692"/>
-      <entity countrycode="FR">
-        <name name="BASKERS" language="fr"/>
-        <id scheme="iso6523-actorid-upis" value="0002:100256692"/>
-        <additionalinfo>FR_ASSUJETTI_ACTIVE</additionalinfo>
-      </entity>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Credit Note V3" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Credit Note CIUS" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Invoice V3" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Invoice CIUS" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:peppol:doctype:pdf+xml##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:Factur-X:1.0::D22B" displayname="France Factur-X" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossDomainAcknowledgementAndResponse:100::CrossDomainAcknowledgementAndResponse##urn:peppol:france:billing:cdv:1.0::D22B" displayname="France CDAR" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::D22B" displayname="France CII Invoice CIUS" state="act"/>
-    </businesscard>
-    <businesscard>
-      <participant scheme="iso6523-actorid-upis" value="0225:100257013"/>
-      <entity countrycode="FR">
-        <name name="ALDILONDA" language="fr"/>
-        <id scheme="iso6523-actorid-upis" value="0002:100257013"/>
-        <additionalinfo>FR_ASSUJETTI_ACTIVE</additionalinfo>
-      </entity>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Credit Note V3" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Credit Note CIUS" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Invoice V3" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Invoice CIUS" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:peppol:doctype:pdf+xml##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:Factur-X:1.0::D22B" displayname="France Factur-X" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossDomainAcknowledgementAndResponse:100::CrossDomainAcknowledgementAndResponse##urn:peppol:france:billing:cdv:1.0::D22B" displayname="France CDAR" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::D22B" displayname="France CII Invoice CIUS" state="act"/>
-    </businesscard>
-    <businesscard>
-      <participant scheme="iso6523-actorid-upis" value="0225:100257153"/>
-      <entity countrycode="FR">
-        <name name="EGI SERVICES" language="fr"/>
-        <id scheme="iso6523-actorid-upis" value="0002:100257153"/>
-        <additionalinfo>FR_ASSUJETTI_ACTIVE</additionalinfo>
-      </entity>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Credit Note V3" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Credit Note CIUS" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Invoice V3" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Invoice CIUS" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:peppol:doctype:pdf+xml##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:Factur-X:1.0::D22B" displayname="France Factur-X" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossDomainAcknowledgementAndResponse:100::CrossDomainAcknowledgementAndResponse##urn:peppol:france:billing:cdv:1.0::D22B" displayname="France CDAR" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::D22B" displayname="France CII Invoice CIUS" state="act"/>
-    </businesscard>
-    <businesscard>
-      <participant scheme="iso6523-actorid-upis" value="0225:100257369"/>
-      <entity countrycode="FR">
-        <name name="BETCOBAT" language="fr"/>
-        <id scheme="iso6523-actorid-upis" value="0002:100257369"/>
-        <additionalinfo>FR_ASSUJETTI_ACTIVE</additionalinfo>
-      </entity>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Credit Note V3" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Credit Note CIUS" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Invoice V3" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Invoice CIUS" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:peppol:doctype:pdf+xml##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:Factur-X:1.0::D22B" displayname="France Factur-X" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossDomainAcknowledgementAndResponse:100::CrossDomainAcknowledgementAndResponse##urn:peppol:france:billing:cdv:1.0::D22B" displayname="France CDAR" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::D22B" displayname="France CII Invoice CIUS" state="act"/>
-    </businesscard>
-    <businesscard>
-      <participant scheme="iso6523-actorid-upis" value="0225:100257559"/>
-      <entity countrycode="FR">
-        <name name="JeremAI" language="fr"/>
-        <id scheme="iso6523-actorid-upis" value="0002:100257559"/>
-        <additionalinfo>FR_ASSUJETTI_ACTIVE</additionalinfo>
-      </entity>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Credit Note V3" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Credit Note CIUS" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Invoice V3" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Invoice CIUS" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:peppol:doctype:pdf+xml##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:Factur-X:1.0::D22B" displayname="France Factur-X" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossDomainAcknowledgementAndResponse:100::CrossDomainAcknowledgementAndResponse##urn:peppol:france:billing:cdv:1.0::D22B" displayname="France CDAR" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::D22B" displayname="France CII Invoice CIUS" state="act"/>
-    </businesscard>
-    <businesscard>
-      <participant scheme="iso6523-actorid-upis" value="0225:100257682"/>
-      <entity countrycode="FR">
-        <name name="MGSC GROUPE" language="fr"/>
-        <id scheme="iso6523-actorid-upis" value="0002:100257682"/>
-        <additionalinfo>FR_ASSUJETTI_ACTIVE</additionalinfo>
-      </entity>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Credit Note V3" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Credit Note CIUS" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Invoice V3" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Invoice CIUS" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:peppol:doctype:pdf+xml##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:Factur-X:1.0::D22B" displayname="France Factur-X" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossDomainAcknowledgementAndResponse:100::CrossDomainAcknowledgementAndResponse##urn:peppol:france:billing:cdv:1.0::D22B" displayname="France CDAR" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::D22B" displayname="France CII Invoice CIUS" state="act"/>
-    </businesscard>
-    <businesscard>
-      <participant scheme="iso6523-actorid-upis" value="0225:100257740"/>
-      <entity countrycode="FR">
-        <name name="SARL MAISON FLOVALIE" language="fr"/>
-        <id scheme="iso6523-actorid-upis" value="0002:100257740"/>
-        <additionalinfo>FR_ASSUJETTI_ACTIVE</additionalinfo>
-      </entity>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Credit Note V3" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Credit Note CIUS" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Invoice V3" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Invoice CIUS" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:peppol:doctype:pdf+xml##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:Factur-X:1.0::D22B" displayname="France Factur-X" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossDomainAcknowledgementAndResponse:100::CrossDomainAcknowledgementAndResponse##urn:peppol:france:billing:cdv:1.0::D22B" displayname="France CDAR" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::D22B" displayname="France CII Invoice CIUS" state="act"/>
-    </businesscard>
-    <businesscard>
-      <participant scheme="iso6523-actorid-upis" value="0225:100257815"/>
-      <entity countrycode="FR">
-        <name name="ALTHIOR" language="fr"/>
-        <id scheme="iso6523-actorid-upis" value="0002:100257815"/>
-        <additionalinfo>FR_ASSUJETTI_ACTIVE</additionalinfo>
-      </entity>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Credit Note V3" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Credit Note CIUS" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Invoice V3" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Invoice CIUS" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:peppol:doctype:pdf+xml##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:Factur-X:1.0::D22B" displayname="France Factur-X" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossDomainAcknowledgementAndResponse:100::CrossDomainAcknowledgementAndResponse##urn:peppol:france:billing:cdv:1.0::D22B" displayname="France CDAR" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::D22B" displayname="France CII Invoice CIUS" state="act"/>
-    </businesscard>
-    <businesscard>
-      <participant scheme="iso6523-actorid-upis" value="0225:100258094"/>
-      <entity countrycode="FR">
-        <name name=" BXT DETAILING" language="fr"/>
-        <id scheme="iso6523-actorid-upis" value="0002:100258094"/>
-        <additionalinfo>FR_ASSUJETTI_ACTIVE</additionalinfo>
-      </entity>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Credit Note V3" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Credit Note CIUS" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Invoice V3" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Invoice CIUS" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:peppol:doctype:pdf+xml##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:Factur-X:1.0::D22B" displayname="France Factur-X" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossDomainAcknowledgementAndResponse:100::CrossDomainAcknowledgementAndResponse##urn:peppol:france:billing:cdv:1.0::D22B" displayname="France CDAR" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::D22B" displayname="France CII Invoice CIUS" state="act"/>
-    </businesscard>
-    <businesscard>
-      <participant scheme="iso6523-actorid-upis" value="0225:100258136"/>
-      <entity countrycode="FR">
-        <name name="DUNEAU &amp; CO" language="fr"/>
-        <id scheme="iso6523-actorid-upis" value="0002:100258136"/>
-        <additionalinfo>FR_ASSUJETTI_ACTIVE</additionalinfo>
-      </entity>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Credit Note V3" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Credit Note CIUS" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Invoice V3" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Invoice CIUS" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:peppol:doctype:pdf+xml##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:Factur-X:1.0::D22B" displayname="France Factur-X" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossDomainAcknowledgementAndResponse:100::CrossDomainAcknowledgementAndResponse##urn:peppol:france:billing:cdv:1.0::D22B" displayname="France CDAR" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::D22B" displayname="France CII Invoice CIUS" state="act"/>
-    </businesscard>
-    <businesscard>
-      <participant scheme="iso6523-actorid-upis" value="0225:100258151"/>
-      <entity countrycode="FR">
-        <name name="PIERRE COURIVAUD ARCHITECTE" language="fr"/>
-        <id scheme="iso6523-actorid-upis" value="0002:100258151"/>
-        <additionalinfo>FR_ASSUJETTI_ACTIVE</additionalinfo>
-      </entity>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Credit Note V3" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Credit Note CIUS" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Invoice V3" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Invoice CIUS" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:peppol:doctype:pdf+xml##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:Factur-X:1.0::D22B" displayname="France Factur-X" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossDomainAcknowledgementAndResponse:100::CrossDomainAcknowledgementAndResponse##urn:peppol:france:billing:cdv:1.0::D22B" displayname="France CDAR" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::D22B" displayname="France CII Invoice CIUS" state="act"/>
-    </businesscard>
-    <businesscard>
-      <participant scheme="iso6523-actorid-upis" value="0225:100258235"/>
-      <entity countrycode="FR">
-        <name name="BTP MYLAS" language="fr"/>
-        <id scheme="iso6523-actorid-upis" value="0002:100258235"/>
-        <additionalinfo>FR_ASSUJETTI_ACTIVE</additionalinfo>
-      </entity>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Credit Note V3" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Credit Note CIUS" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Invoice V3" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Invoice CIUS" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:peppol:doctype:pdf+xml##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:Factur-X:1.0::D22B" displayname="France Factur-X" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossDomainAcknowledgementAndResponse:100::CrossDomainAcknowledgementAndResponse##urn:peppol:france:billing:cdv:1.0::D22B" displayname="France CDAR" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::D22B" displayname="France CII Invoice CIUS" state="act"/>
-    </businesscard>
-    <businesscard>
-      <participant scheme="iso6523-actorid-upis" value="0225:100258524"/>
-      <entity countrycode="FR">
-        <name name="[ND]" language="fr"/>
-        <id scheme="0002" value="100258524"/>
-        <additionalinfo>FR_ASSUJETTI_ACTIVE</additionalinfo>
-        <regdate>2026-05-10</regdate>
-      </entity>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:ApplicationResponse-2::ApplicationResponse##urn:fdc:peppol.eu:poacc:trns:invoice_response:3::2.1" displayname="Peppol Invoice Response transaction 3.0" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Credit Note V3" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Credit Note CIUS" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:extended:1.0::2.1" displayname="France UBL Credit Note Extension" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Invoice V3" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Invoice CIUS" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:extended:1.0::2.1" displayname="France UBL Invoice Extension" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:peppol:doctype:pdf+xml##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:Factur-X:1.0::D22B" displayname="France Factur-X" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossDomainAcknowledgementAndResponse:100::CrossDomainAcknowledgementAndResponse##urn:peppol:france:billing:cdv:1.0::D22B" displayname="France CDAR" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::D22B" displayname="France CII Invoice CIUS" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:extended:1.0::D22B" displayname="France CII Invoice Extension" state="act"/>
-    </businesscard>
-    <businesscard>
-      <participant scheme="iso6523-actorid-upis" value="0225:100258714"/>
-      <entity countrycode="FR">
-        <name name="DOMISTAY PROPERTIES" language="fr"/>
-        <id scheme="iso6523-actorid-upis" value="0002:100258714"/>
-        <additionalinfo>FR_ASSUJETTI_ACTIVE</additionalinfo>
-      </entity>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Credit Note V3" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Credit Note CIUS" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Invoice V3" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Invoice CIUS" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:peppol:doctype:pdf+xml##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:Factur-X:1.0::D22B" displayname="France Factur-X" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossDomainAcknowledgementAndResponse:100::CrossDomainAcknowledgementAndResponse##urn:peppol:france:billing:cdv:1.0::D22B" displayname="France CDAR" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::D22B" displayname="France CII Invoice CIUS" state="act"/>
-    </businesscard>
-    <businesscard>
-      <participant scheme="iso6523-actorid-upis" value="0225:100258763"/>
-      <entity countrycode="FR">
-        <name name="Les flots des remparts" language="fr"/>
-        <id scheme="iso6523-actorid-upis" value="0002:100258763"/>
-        <additionalinfo>FR_ASSUJETTI_ACTIVE</additionalinfo>
-      </entity>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Credit Note V3" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Credit Note CIUS" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Invoice V3" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Invoice CIUS" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:peppol:doctype:pdf+xml##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:Factur-X:1.0::D22B" displayname="France Factur-X" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossDomainAcknowledgementAndResponse:100::CrossDomainAcknowledgementAndResponse##urn:peppol:france:billing:cdv:1.0::D22B" displayname="France CDAR" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::D22B" displayname="France CII Invoice CIUS" state="act"/>
-    </businesscard>
-    <businesscard>
-      <participant scheme="iso6523-actorid-upis" value="0225:100258821"/>
-      <entity countrycode="FR">
-        <name name="WeWaw" language="fr"/>
-        <id scheme="iso6523-actorid-upis" value="0002:100258821"/>
-        <additionalinfo>FR_ASSUJETTI_ACTIVE</additionalinfo>
-      </entity>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Credit Note V3" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Credit Note CIUS" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Invoice V3" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Invoice CIUS" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:peppol:doctype:pdf+xml##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:Factur-X:1.0::D22B" displayname="France Factur-X" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossDomainAcknowledgementAndResponse:100::CrossDomainAcknowledgementAndResponse##urn:peppol:france:billing:cdv:1.0::D22B" displayname="France CDAR" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::D22B" displayname="France CII Invoice CIUS" state="act"/>
-    </businesscard>
-    <businesscard>
-      <participant scheme="iso6523-actorid-upis" value="0225:100258854"/>
-      <entity countrycode="FR">
-        <name name="[ND]" language="fr"/>
-        <id scheme="0002" value="100258854"/>
-        <additionalinfo>FR_ASSUJETTI_ACTIVE</additionalinfo>
-        <regdate>2026-05-10</regdate>
-      </entity>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:ApplicationResponse-2::ApplicationResponse##urn:fdc:peppol.eu:poacc:trns:invoice_response:3::2.1" displayname="Peppol Invoice Response transaction 3.0" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Credit Note V3" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Credit Note CIUS" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:extended:1.0::2.1" displayname="France UBL Credit Note Extension" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Invoice V3" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Invoice CIUS" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:extended:1.0::2.1" displayname="France UBL Invoice Extension" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:peppol:doctype:pdf+xml##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:Factur-X:1.0::D22B" displayname="France Factur-X" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossDomainAcknowledgementAndResponse:100::CrossDomainAcknowledgementAndResponse##urn:peppol:france:billing:cdv:1.0::D22B" displayname="France CDAR" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::D22B" displayname="France CII Invoice CIUS" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:extended:1.0::D22B" displayname="France CII Invoice Extension" state="act"/>
-    </businesscard>
-    <businesscard>
-      <participant scheme="iso6523-actorid-upis" value="0225:100259076"/>
-      <entity countrycode="FR">
-        <name name="SAS SMART AUTO-POINT_Sage_Company_FUll_Name" language="en"/>
-        <id scheme="0225" value="100259076"/>
-        <regdate>0001-01-01</regdate>
-      </entity>
-      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::D22B" displayname="France CII Invoice CIUS" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:peppol:doctype:pdf+xml##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:Factur-X:1.0::D22B" displayname="France Factur-X" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Credit Note CIUS" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Invoice CIUS" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossDomainAcknowledgementAndResponse:100::CrossDomainAcknowledgementAndResponse##urn:peppol:france:billing:cdv:1.0::D22B" displayname="France CDAR" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Invoice V3" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:extended:1.0::2.1" displayname="France UBL Credit Note Extension" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:extended:1.0::D22B" displayname="France CII Invoice Extension" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:extended:1.0::2.1" displayname="France UBL Invoice Extension" state="act"/>
-    </businesscard>
-    <businesscard>
-      <participant scheme="iso6523-actorid-upis" value="0225:100259126"/>
-      <entity countrycode="FR">
-        <name name="BOZ IMMO PARTIMOINE" language="fr"/>
-        <id scheme="iso6523-actorid-upis" value="0002:100259126"/>
-        <additionalinfo>FR_ASSUJETTI_ACTIVE</additionalinfo>
-      </entity>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Credit Note V3" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Credit Note CIUS" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Invoice V3" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Invoice CIUS" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:peppol:doctype:pdf+xml##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:Factur-X:1.0::D22B" displayname="France Factur-X" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossDomainAcknowledgementAndResponse:100::CrossDomainAcknowledgementAndResponse##urn:peppol:france:billing:cdv:1.0::D22B" displayname="France CDAR" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::D22B" displayname="France CII Invoice CIUS" state="act"/>
-    </businesscard>
-    <businesscard>
-      <participant scheme="iso6523-actorid-upis" value="0225:100259134"/>
-      <entity countrycode="FR">
-        <name name="[ND]" language="fr"/>
-        <id scheme="0002" value="100259134"/>
-        <additionalinfo>FR_ASSUJETTI_ACTIVE</additionalinfo>
-        <regdate>2026-05-10</regdate>
-      </entity>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:ApplicationResponse-2::ApplicationResponse##urn:fdc:peppol.eu:poacc:trns:invoice_response:3::2.1" displayname="Peppol Invoice Response transaction 3.0" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Credit Note V3" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Credit Note CIUS" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:extended:1.0::2.1" displayname="France UBL Credit Note Extension" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Invoice V3" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Invoice CIUS" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:extended:1.0::2.1" displayname="France UBL Invoice Extension" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:peppol:doctype:pdf+xml##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:Factur-X:1.0::D22B" displayname="France Factur-X" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossDomainAcknowledgementAndResponse:100::CrossDomainAcknowledgementAndResponse##urn:peppol:france:billing:cdv:1.0::D22B" displayname="France CDAR" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::D22B" displayname="France CII Invoice CIUS" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:extended:1.0::D22B" displayname="France CII Invoice Extension" state="act"/>
-    </businesscard>
-    <businesscard>
-      <participant scheme="iso6523-actorid-upis" value="0225:100259233"/>
-      <entity countrycode="FR">
-        <name name="KINE AVANZA" language="fr"/>
-        <id scheme="iso6523-actorid-upis" value="0002:100259233"/>
-        <additionalinfo>FR_ASSUJETTI_ACTIVE</additionalinfo>
-      </entity>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Credit Note V3" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Credit Note CIUS" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Invoice V3" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Invoice CIUS" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:peppol:doctype:pdf+xml##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:Factur-X:1.0::D22B" displayname="France Factur-X" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossDomainAcknowledgementAndResponse:100::CrossDomainAcknowledgementAndResponse##urn:peppol:france:billing:cdv:1.0::D22B" displayname="France CDAR" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::D22B" displayname="France CII Invoice CIUS" state="act"/>
-    </businesscard>
-    <businesscard>
-      <participant scheme="iso6523-actorid-upis" value="0225:100259399"/>
-      <entity countrycode="FR">
-        <name name="Masinthi Conseil" language="fr"/>
-        <id scheme="iso6523-actorid-upis" value="0002:100259399"/>
-        <additionalinfo>FR_ASSUJETTI_ACTIVE</additionalinfo>
-      </entity>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Credit Note V3" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Credit Note CIUS" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Invoice V3" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Invoice CIUS" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:peppol:doctype:pdf+xml##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:Factur-X:1.0::D22B" displayname="France Factur-X" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossDomainAcknowledgementAndResponse:100::CrossDomainAcknowledgementAndResponse##urn:peppol:france:billing:cdv:1.0::D22B" displayname="France CDAR" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::D22B" displayname="France CII Invoice CIUS" state="act"/>
-    </businesscard>
-    <businesscard>
-      <participant scheme="iso6523-actorid-upis" value="0225:100259498"/>
-      <entity countrycode="FR">
-        <name name="Clara Charlotte Industry" language="fr"/>
-        <id scheme="iso6523-actorid-upis" value="0002:100259498"/>
-        <additionalinfo>FR_ASSUJETTI_ACTIVE</additionalinfo>
-      </entity>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Credit Note V3" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Credit Note CIUS" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Invoice V3" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Invoice CIUS" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:peppol:doctype:pdf+xml##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:Factur-X:1.0::D22B" displayname="France Factur-X" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossDomainAcknowledgementAndResponse:100::CrossDomainAcknowledgementAndResponse##urn:peppol:france:billing:cdv:1.0::D22B" displayname="France CDAR" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::D22B" displayname="France CII Invoice CIUS" state="act"/>
-    </businesscard>
-    <businesscard>
-      <participant scheme="iso6523-actorid-upis" value="0225:100259548"/>
-      <entity countrycode="FR">
-        <name name="DJN CARS" language="fr"/>
-        <id scheme="iso6523-actorid-upis" value="0002:100259548"/>
-        <additionalinfo>FR_ASSUJETTI_ACTIVE</additionalinfo>
-      </entity>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Credit Note V3" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Credit Note CIUS" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Invoice V3" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Invoice CIUS" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:peppol:doctype:pdf+xml##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:Factur-X:1.0::D22B" displayname="France Factur-X" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossDomainAcknowledgementAndResponse:100::CrossDomainAcknowledgementAndResponse##urn:peppol:france:billing:cdv:1.0::D22B" displayname="France CDAR" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::D22B" displayname="France CII Invoice CIUS" state="act"/>
-    </businesscard>
-    <businesscard>
-      <participant scheme="iso6523-actorid-upis" value="0225:100259662"/>
-      <entity countrycode="FR">
-        <name name="TAKE A SHOT PHOTOGRAPHER"/>
-        <geoinfo>SAINT ETIENNE DE CHIGNY</geoinfo>
-        <id scheme="9957" value="FR40100259662"/>
-        <id scheme="0002" value="100259662"/>
-        <regdate>2026-05-12</regdate>
-      </entity>
-      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:extended:1.0::D22B" displayname="France CII Invoice Extension" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::D22B" displayname="France CII Invoice CIUS" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Invoice V3" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:extended:1.0::2.1" displayname="France UBL Invoice Extension" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Invoice CIUS" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Credit Note V3" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:extended:1.0::2.1" displayname="France UBL Credit Note Extension" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Credit Note CIUS" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Order-2::Order##urn:fdc:peppol.eu:poacc:trns:order:3:extended:urn:fdc:anskaffelser.no:2019:ehf:spec:3.0::2.2" displayname="EHF Advanced Order Initiation 3.0" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Order-2::Order##urn:fdc:peppol.eu:poacc:trns:order:3::2.1" displayname="Peppol Order transaction 3.0" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:ApplicationResponse-2::ApplicationResponse##urn:fdc:peppol.eu:poacc:trns:invoice_response:3::2.1" displayname="Peppol Invoice Response transaction 3.0" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:ApplicationResponse-2::ApplicationResponse##urn:fdc:peppol.eu:poacc:trns:mlr:3::2.1" displayname="Peppol Message Level Response transaction 3.0" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossDomainAcknowledgementAndResponse:100::CrossDomainAcknowledgementAndResponse##urn:peppol:france:billing:cdv:1.0::D22B" displayname="France CDAR" state="act"/>
-    </businesscard>
-    <businesscard>
-      <participant scheme="iso6523-actorid-upis" value="0225:100259670"/>
-      <entity countrycode="FR">
-        <name name="ABC BATI" language="fr"/>
-        <id scheme="iso6523-actorid-upis" value="0002:100259670"/>
-        <additionalinfo>FR_ASSUJETTI_ACTIVE</additionalinfo>
-      </entity>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Credit Note V3" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Credit Note CIUS" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Invoice V3" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Invoice CIUS" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:peppol:doctype:pdf+xml##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:Factur-X:1.0::D22B" displayname="France Factur-X" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossDomainAcknowledgementAndResponse:100::CrossDomainAcknowledgementAndResponse##urn:peppol:france:billing:cdv:1.0::D22B" displayname="France CDAR" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::D22B" displayname="France CII Invoice CIUS" state="act"/>
-    </businesscard>
-    <businesscard>
-      <participant scheme="iso6523-actorid-upis" value="0225:100259720"/>
-      <entity countrycode="FR">
-        <name name="TT BAT" language="fr"/>
-        <id scheme="iso6523-actorid-upis" value="0002:100259720"/>
-        <additionalinfo>FR_ASSUJETTI_ACTIVE</additionalinfo>
-      </entity>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Credit Note V3" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Credit Note CIUS" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Invoice V3" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Invoice CIUS" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:peppol:doctype:pdf+xml##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:Factur-X:1.0::D22B" displayname="France Factur-X" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossDomainAcknowledgementAndResponse:100::CrossDomainAcknowledgementAndResponse##urn:peppol:france:billing:cdv:1.0::D22B" displayname="France CDAR" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::D22B" displayname="France CII Invoice CIUS" state="act"/>
-    </businesscard>
-    <businesscard>
-      <participant scheme="iso6523-actorid-upis" value="0225:100259852"/>
-      <entity countrycode="FR">
-        <name name="HYPHA" language="fr"/>
-        <id scheme="iso6523-actorid-upis" value="0002:100259852"/>
-        <additionalinfo>FR_ASSUJETTI_ACTIVE</additionalinfo>
-      </entity>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Credit Note V3" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Credit Note CIUS" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Invoice V3" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Invoice CIUS" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:peppol:doctype:pdf+xml##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:Factur-X:1.0::D22B" displayname="France Factur-X" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossDomainAcknowledgementAndResponse:100::CrossDomainAcknowledgementAndResponse##urn:peppol:france:billing:cdv:1.0::D22B" displayname="France CDAR" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::D22B" displayname="France CII Invoice CIUS" state="act"/>
-    </businesscard>
-    <businesscard>
-      <participant scheme="iso6523-actorid-upis" value="0225:100260074"/>
-      <entity countrycode="FR">
-        <name name="[ND]" language="fr"/>
-        <id scheme="0002" value="100260074"/>
-        <additionalinfo>FR_ASSUJETTI_ACTIVE</additionalinfo>
-        <regdate>2026-05-10</regdate>
-      </entity>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:ApplicationResponse-2::ApplicationResponse##urn:fdc:peppol.eu:poacc:trns:invoice_response:3::2.1" displayname="Peppol Invoice Response transaction 3.0" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Credit Note V3" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Credit Note CIUS" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:extended:1.0::2.1" displayname="France UBL Credit Note Extension" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Invoice V3" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Invoice CIUS" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:extended:1.0::2.1" displayname="France UBL Invoice Extension" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:peppol:doctype:pdf+xml##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:Factur-X:1.0::D22B" displayname="France Factur-X" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossDomainAcknowledgementAndResponse:100::CrossDomainAcknowledgementAndResponse##urn:peppol:france:billing:cdv:1.0::D22B" displayname="France CDAR" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::D22B" displayname="France CII Invoice CIUS" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:extended:1.0::D22B" displayname="France CII Invoice Extension" state="act"/>
-    </businesscard>
-    <businesscard>
-      <participant scheme="iso6523-actorid-upis" value="0225:100260454"/>
-      <entity countrycode="FR">
-        <name name="JCDIAG38" language="fr"/>
-        <id scheme="iso6523-actorid-upis" value="0002:100260454"/>
-        <additionalinfo>FR_ASSUJETTI_ACTIVE</additionalinfo>
-      </entity>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Credit Note V3" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Credit Note CIUS" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Invoice V3" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Invoice CIUS" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:peppol:doctype:pdf+xml##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:Factur-X:1.0::D22B" displayname="France Factur-X" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossDomainAcknowledgementAndResponse:100::CrossDomainAcknowledgementAndResponse##urn:peppol:france:billing:cdv:1.0::D22B" displayname="France CDAR" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::D22B" displayname="France CII Invoice CIUS" state="act"/>
-    </businesscard>
-    <businesscard>
-      <participant scheme="iso6523-actorid-upis" value="0225:100260793"/>
-      <entity countrycode="FR">
-        <name name="AB INVEST" language="fr"/>
-        <id scheme="iso6523-actorid-upis" value="0002:100260793"/>
-        <additionalinfo>FR_ASSUJETTI_ACTIVE</additionalinfo>
-      </entity>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Credit Note V3" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Credit Note CIUS" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Invoice V3" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Invoice CIUS" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:peppol:doctype:pdf+xml##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:Factur-X:1.0::D22B" displayname="France Factur-X" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossDomainAcknowledgementAndResponse:100::CrossDomainAcknowledgementAndResponse##urn:peppol:france:billing:cdv:1.0::D22B" displayname="France CDAR" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::D22B" displayname="France CII Invoice CIUS" state="act"/>
-    </businesscard>
-    <businesscard>
-      <participant scheme="iso6523-actorid-upis" value="0225:100261056"/>
-      <entity countrycode="FR">
-        <name name="Anagram" language="fr"/>
-        <id scheme="iso6523-actorid-upis" value="0002:100261056"/>
-        <additionalinfo>FR_ASSUJETTI_ACTIVE</additionalinfo>
-      </entity>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Credit Note V3" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Credit Note CIUS" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Invoice V3" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Invoice CIUS" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:peppol:doctype:pdf+xml##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:Factur-X:1.0::D22B" displayname="France Factur-X" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossDomainAcknowledgementAndResponse:100::CrossDomainAcknowledgementAndResponse##urn:peppol:france:billing:cdv:1.0::D22B" displayname="France CDAR" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::D22B" displayname="France CII Invoice CIUS" state="act"/>
-    </businesscard>
-    <businesscard>
-      <participant scheme="iso6523-actorid-upis" value="0225:100261171"/>
-      <entity countrycode="FR">
-        <name name="O ZINK 2" language="fr"/>
-        <id scheme="iso6523-actorid-upis" value="0002:100261171"/>
-        <additionalinfo>FR_ASSUJETTI_ACTIVE</additionalinfo>
-      </entity>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Credit Note V3" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Credit Note CIUS" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Invoice V3" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Invoice CIUS" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:peppol:doctype:pdf+xml##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:Factur-X:1.0::D22B" displayname="France Factur-X" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossDomainAcknowledgementAndResponse:100::CrossDomainAcknowledgementAndResponse##urn:peppol:france:billing:cdv:1.0::D22B" displayname="France CDAR" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::D22B" displayname="France CII Invoice CIUS" state="act"/>
-    </businesscard>
-    <businesscard>
-      <participant scheme="iso6523-actorid-upis" value="0225:100261536"/>
-      <entity countrycode="FR">
-        <name name="NOVALYA DISTRIBUTION" language="fr"/>
-        <id scheme="iso6523-actorid-upis" value="0002:100261536"/>
-        <additionalinfo>FR_ASSUJETTI_ACTIVE</additionalinfo>
-      </entity>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Credit Note V3" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Credit Note CIUS" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Invoice V3" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Invoice CIUS" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:peppol:doctype:pdf+xml##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:Factur-X:1.0::D22B" displayname="France Factur-X" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossDomainAcknowledgementAndResponse:100::CrossDomainAcknowledgementAndResponse##urn:peppol:france:billing:cdv:1.0::D22B" displayname="France CDAR" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::D22B" displayname="France CII Invoice CIUS" state="act"/>
-    </businesscard>
-    <businesscard>
-      <participant scheme="iso6523-actorid-upis" value="0225:100262443"/>
-      <entity countrycode="FR">
-        <name name="Cerevial" language="fr"/>
-        <id scheme="iso6523-actorid-upis" value="0002:100262443"/>
-        <additionalinfo>FR_ASSUJETTI_ACTIVE</additionalinfo>
-      </entity>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Credit Note V3" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Credit Note CIUS" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Invoice V3" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Invoice CIUS" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:peppol:doctype:pdf+xml##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:Factur-X:1.0::D22B" displayname="France Factur-X" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossDomainAcknowledgementAndResponse:100::CrossDomainAcknowledgementAndResponse##urn:peppol:france:billing:cdv:1.0::D22B" displayname="France CDAR" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::D22B" displayname="France CII Invoice CIUS" state="act"/>
-    </businesscard>
-    <businesscard>
-      <participant scheme="iso6523-actorid-upis" value="0225:100262716"/>
-      <entity countrycode="FR">
-        <name name="TSO TRANSPORT 78" language="fr"/>
-        <id scheme="iso6523-actorid-upis" value="0002:100262716"/>
-        <additionalinfo>FR_ASSUJETTI_ACTIVE</additionalinfo>
-      </entity>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Credit Note V3" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Credit Note CIUS" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Invoice V3" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Invoice CIUS" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:peppol:doctype:pdf+xml##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:Factur-X:1.0::D22B" displayname="France Factur-X" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossDomainAcknowledgementAndResponse:100::CrossDomainAcknowledgementAndResponse##urn:peppol:france:billing:cdv:1.0::D22B" displayname="France CDAR" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::D22B" displayname="France CII Invoice CIUS" state="act"/>
-    </businesscard>
-    <businesscard>
-      <participant scheme="iso6523-actorid-upis" value="0225:100262799"/>
-      <entity countrycode="FR">
-        <name name="BIJOU B" language="fr"/>
-        <id scheme="iso6523-actorid-upis" value="0002:100262799"/>
-        <additionalinfo>FR_ASSUJETTI_ACTIVE</additionalinfo>
-      </entity>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Credit Note V3" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Credit Note CIUS" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Invoice V3" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Invoice CIUS" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:peppol:doctype:pdf+xml##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:Factur-X:1.0::D22B" displayname="France Factur-X" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossDomainAcknowledgementAndResponse:100::CrossDomainAcknowledgementAndResponse##urn:peppol:france:billing:cdv:1.0::D22B" displayname="France CDAR" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::D22B" displayname="France CII Invoice CIUS" state="act"/>
-    </businesscard>
-    <businesscard>
-      <participant scheme="iso6523-actorid-upis" value="0225:100262815"/>
-      <entity countrycode="FR">
-        <name name="L'Art du Mobilier" language="fr"/>
-        <id scheme="iso6523-actorid-upis" value="0002:100262815"/>
-        <additionalinfo>FR_ASSUJETTI_ACTIVE</additionalinfo>
-      </entity>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Credit Note V3" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Credit Note CIUS" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Invoice V3" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::2.1" displayname="France UBL Invoice CIUS" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:peppol:doctype:pdf+xml##urn:cen.eu:en16931:2017#conformant#urn:peppol:france:billing:Factur-X:1.0::D22B" displayname="France Factur-X" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossDomainAcknowledgementAndResponse:100::CrossDomainAcknowledgementAndResponse##urn:peppol:france:billing:cdv:1.0::D22B" displayname="France CDAR" state="act"/>
-      <doctypeid scheme="busdox-docid-qns" value="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice##urn:cen.eu:en16931:2017#compliant#urn:peppol:france:billing:cius:1.0::D22B" displayname="France CII Invoice CIUS" state="act"/>
-    </businesscard>
-    <businesscard>
-      <participant scheme="iso6523-actorid-upis" value="0225:100262831"/>
-      <entity countrycode="FR">
-        <name name="EI - JESSU MATTHIEU" language="fr"/>
-        <id scheme="iso6523-actorid-upis" value="0002:100262831"/>
         <additionalinfo>FR_ASSUJETTI_ACTIVE</additionalinfo>
       </entity>
       <doctypeid scheme="busdox-docid-qns" value="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1" displayname="Peppol BIS Billing UBL Credit Note V3" state="act"/>
