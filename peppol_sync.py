@@ -15,9 +15,10 @@ try:
 except ImportError:
     sys.exit("lxml is not installed. Please run 'pip install lxml' to use this script.")
 from typing import Dict, TextIO, Optional
-from urllib.request import urlopen
+from urllib.request import urlopen, Request
 from urllib.error import URLError
 import time
+import zlib
 import subprocess
 import socket
 import getpass
@@ -89,18 +90,37 @@ class PeppolSync:
         start_time = time.time() # Record start time
 
         try:
-            # Open URL connection
-            with urlopen(url) as response:
+            # Open URL connection.
+            # urllib sends "Accept-Encoding: identity" by default, which directory.peppol.eu
+            # rejects with HTTP 406 since Sept 2026. Advertise gzip instead and decompress
+            # on the fly if the server actually compresses the response.
+            request = Request(url, headers={
+                "User-Agent": "peppol_per_country (https://github.com/peppoller/peppol_per_country)",
+                "Accept": "*/*",
+                "Accept-Encoding": "gzip, deflate",
+            })
+            with urlopen(request) as response:
                 # Download in chunks
                 chunk_size = 8192  # 8KB chunks
                 downloaded = 0
+                encoding = (response.headers.get("Content-Encoding") or "").lower()
+                decompressor = None
+                if encoding == "gzip":
+                    decompressor = zlib.decompressobj(16 + zlib.MAX_WBITS)
+                elif encoding == "deflate":
+                    decompressor = zlib.decompressobj()
+                self.log(f"download_xml: HTTP {response.status}, Content-Encoding: {encoding or 'none'}")
 
                 with open(output_file, 'wb') as f:
                     while True:
                         chunk = response.read(chunk_size)
                         if not chunk:
+                            if decompressor:
+                                f.write(decompressor.flush())
                             break
 
+                        if decompressor:
+                            chunk = decompressor.decompress(chunk)
                         f.write(chunk)
                         downloaded += len(chunk)
 
