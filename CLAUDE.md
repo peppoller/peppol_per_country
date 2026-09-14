@@ -82,30 +82,39 @@ The `PeppolSync` class handles the entire workflow:
    - Parses business cards with `lxml.etree` for fast XML handling
    - Extracts country code from `<entity countrycode="XX">`
    - Extracts registration date from `<regdate>` for statistics
-   - Writes pretty-printed XML to country directories
+   - Writes pretty-printed XML to country/month directories
 
 3. **File Splitting Logic** (lines 228-250)
-   - Splits files when they exceed `max_bytes` (default: 2MB)
+   - Groups cards per country and registration month (`<regdate>`): `extracts/BE/2026-08/`; cards without a registration date go to `extracts/BE/0000-00/`
+   - Within a month directory, splits files when they exceed `max_bytes` (default: 2MB)
    - Sequential naming: `business-cards.000001.xml`, `business-cards.000002.xml`, etc.
-   - Each country has its own directory: `extracts/BE/`, `extracts/NO/`, etc.
+   - Bucketing by month keeps past months stable: a new registration only touches its own month, so daily commits stay small
+   - Keeps one output file open per country/month bucket, with an LRU cache bounded by the process file-descriptor limit
    - Automatically creates header and footer tags for valid XML
 
 4. **Report Generation** (`generate_report()` at line 269)
-   - Creates `extracts/report.md` with country statistics
-   - Shows file count, card count, and size per country
+   - Creates `docs/report.md` with country statistics
+   - Shows month count, file count, card count, and size per country
 
 ### Output Structure
 
 ```
 extracts/
 ├── AT/
-│   ├── business-cards.000001.xml
-│   └── business-cards.000002.xml
+│   ├── 0000-00/                     # cards without <regdate>
+│   │   └── business-cards.000001.xml
+│   ├── 2025-11/
+│   │   └── business-cards.000001.xml
+│   └── 2026-08/
+│       ├── business-cards.000001.xml
+│       └── business-cards.000002.xml
 ├── BE/
-│   ├── business-cards.000001.xml
+│   ├── 2026-08/
+│   │   ├── business-cards.000001.xml
+│   │   └── ...
 │   └── ...
-├── report.md
-└── peppol_sync.log
+docs/report.md
+log/peppol_sync.log
 ```
 
 ### GitHub Actions
@@ -114,7 +123,7 @@ extracts/
 - Runs at 09:15 UTC daily
 - Executes `python3 peppol_sync.py sync -V`
 - Commits and pushes changes to `extracts/` automatically
-- Creates `extracts/git_diff.txt` with change summary
+- Creates `log/git_diff.txt` and `log/git_status.txt` with change summary
 
 **Pages Deployment** (`.github/workflows/static.yml`)
 - Deploys `site/` directory to GitHub Pages
@@ -151,7 +160,7 @@ When a country file exceeds `max_bytes`:
 
 - **Temporary files** (`tmp/`): Deleted after processing by default (keep with `-K`)
 - **Extract files** (`extracts/**/*.xml`): Deleted before each sync by default (preserve with `-C`)
-- **Log file** (`extracts/peppol_sync.log`): Overwritten on each run
+- **Log file** (`log/peppol_sync.log`): Overwritten on each run
 
 ## Version Management
 

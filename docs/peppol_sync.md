@@ -61,18 +61,20 @@ The `PeppolSync` class handles the entire workflow:
     - Parses business cards with `lxml.etree` for fast XML handling
     - Extracts country code from `<entity countrycode="XX">`
     - Extracts registration date from `<regdate>` for statistics
-    - Writes pretty-printed XML to country directories
+    - Writes pretty-printed XML to country/month directories
 
 3. **File Splitting Logic** (lines 228-250)
 
-    - Splits files when they exceed `max_bytes` (default: 2MB)
+    - Groups cards per country and registration month (`<regdate>`): `extracts/BE/2026-08/`; cards without a registration date go to `extracts/BE/0000-00/`
+    - Within a month directory, splits files when they exceed `max_bytes` (default: 2MB)
     - Sequential naming: `business-cards.000001.xml`, `business-cards.000002.xml`, etc.
-    - Each country has its own directory: `extracts/BE/`, `extracts/NO/`, etc.
+    - Bucketing by month keeps past months stable: a new registration only touches its own month, so daily commits stay small
+    - Keeps one output file open per country/month bucket, with an LRU cache bounded by the process file-descriptor limit
     - Automatically creates header and footer tags for valid XML
 
 4. **Report Generation** (`generate_report()` at line 269)
-    - Creates `extracts/report.md` with country statistics
-    - Shows file count, card count, and size per country
+    - Creates `docs/report.md` with country statistics
+    - Shows month count, file count, card count, and size per country
 
 ## Running the sync tool
 
@@ -150,4 +152,4 @@ When a country file exceeds `max_bytes`:
 
 - **Temporary files** (`tmp/`): Deleted after processing by default (keep with `-K`)
 - **Extract files** (`extracts/**/*.xml`): Deleted before each sync by default (preserve with `-C`)
-- **Log file** (`extracts/peppol_sync.log`): Overwritten on each run
+- **Log file** (`log/peppol_sync.log`): Overwritten on each run

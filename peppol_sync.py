@@ -8,7 +8,7 @@ import sys
 import os
 from pathlib import Path
 from datetime import datetime
-from collections import defaultdict
+from collections import defaultdict, OrderedDict
 import re
 try:
     from lxml import etree as ET
@@ -22,6 +22,10 @@ import zlib
 import subprocess
 import socket
 import getpass
+try:
+    import resource
+except ImportError:  # not available on Windows
+    resource = None
 
 
 class PeppolSync:
@@ -36,6 +40,7 @@ class PeppolSync:
         self.file_stats = {}
         self.max_bytes = max_bytes
         self.keep_tmp = keep_tmp
+        self.max_open_files = self._open_file_budget()
 
         # Create directories
         self.tmp_dir.mkdir(exist_ok=True)
@@ -51,6 +56,23 @@ class PeppolSync:
         self.log_handle = open(log_file, "w") # Changed to 'w' to start empty
         self.log(f"Date: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
         self.log(f"User: {getpass.getuser()}, Host: {socket.gethostname()}, CWD: {os.getcwd()}")
+
+    @staticmethod
+    def _open_file_budget() -> int:
+        """How many output files may be open at once (one per country/month bucket).
+        Raise the soft limit as far as allowed; keep headroom for other descriptors."""
+        budget = 1024
+        if resource is not None:
+            soft, hard = resource.getrlimit(resource.RLIMIT_NOFILE)
+            wanted = min(hard, 65536) if hard != resource.RLIM_INFINITY else 65536
+            if soft < wanted:
+                try:
+                    resource.setrlimit(resource.RLIMIT_NOFILE, (wanted, hard))
+                    soft = wanted
+                except (ValueError, OSError):
+                    pass
+            budget = max(64, soft - 128)
+        return budget
 
     def log(self, message: str):
         """Write to log file"""
@@ -159,6 +181,11 @@ class PeppolSync:
             return entity.get("countrycode")
         return None
 
+    def bucket_file(self, bucket: str, sequence: int) -> Path:
+        """Path of the n-th file of a country/month bucket, e.g. extracts/BE/2026-08/business-cards.000003.xml"""
+        country, month = bucket.split("/", 1)
+        return self.extracts_dir / country / month / f"business-cards.{sequence:06d}.xml"
+
     def extract_date_from_etree(self, element: ET.Element) -> Optional[str]:
         """Extract registration date from ElementTree element"""
         regdate = element.find(".//regdate")
@@ -191,7 +218,7 @@ class PeppolSync:
 
         header = ""
         header_found = False
-        open_files: Dict[str, TextIO] = {}
+        open_files: "OrderedDict[str, TextIO]" = OrderedDict()  # bucket -> handle, LRU order
         processed_cards = 0
 
         try:
@@ -245,6 +272,9 @@ class PeppolSync:
 
                         self.stats[f"country_{country}"] += 1
 
+                        # Bucket by registration month; cards without regdate go to 0000-00
+                        month = date[:7] if date else "0000-00"
+
                         if not date:
                             entity_name = self.extract_entity_name_from_etree(root)
                             safe_name = "".join(filter(str.isalnum, entity_name or ""))[:5].upper()
@@ -252,37 +282,56 @@ class PeppolSync:
 
                         self.stats[f"date_{date}"] += 1
 
-                        # File writing logic
-                        stats = self.file_stats.setdefault(country, {'sequence': 1})
-                        output_path = self.extracts_dir / country / f"business-cards.{stats['sequence']:06d}.xml"
+                        # File writing logic: one sequence of size-limited files per country/month
+                        bucket = f"{country}/{month}"
+                        stats = self.file_stats.setdefault(bucket, {'sequence': 1})
+                        handle = open_files.get(bucket)
 
-                        if country in open_files and open_files[country].tell() > self.max_bytes:
-                            open_files[country].write('\n</root>\n')
-                            open_files[country].close()
-                            del open_files[country]
-                            stats['sequence'] += 1
-                            output_path = self.extracts_dir / country / f"business-cards.{stats['sequence']:06d}.xml"
+                        if handle is not None:
+                            open_files.move_to_end(bucket)
+                            if handle.tell() > self.max_bytes:
+                                handle.write('\n</root>\n')
+                                handle.close()
+                                del open_files[bucket]
+                                stats['sequence'] += 1
+                                handle = None
 
-                        if country not in open_files:
+                        if handle is None:
+                            if len(open_files) >= self.max_open_files:
+                                # Evict least recently used handle; the file is reopened in
+                                # append mode if needed and gets its footer in finalize.
+                                _, victim = open_files.popitem(last=False)
+                                victim.close()
+                            output_path = self.bucket_file(bucket, stats['sequence'])
                             output_path.parent.mkdir(parents=True, exist_ok=True)
-                            file_handle = open(output_path, "a", encoding="utf-8")
-                            if file_handle.tell() == 0:
-                                file_handle.write(header.replace('><', '>\n<'))
+                            handle = open(output_path, "a", encoding="utf-8")
+                            if handle.tell() == 0:
+                                handle.write(header.replace('><', '>\n<'))
                                 self.file_count += 1
-                            open_files[country] = file_handle
+                            open_files[bucket] = handle
 
                         # Pretty print the XML using lxml
                         pretty_card_xml = ET.tostring(root, pretty_print=True, encoding='unicode')
                         indented_card = "    " + pretty_card_xml.strip().replace('\n', '\n    ')
-                        open_files[country].write("\n" + indented_card)
+                        handle.write("\n" + indented_card)
 
                     except ET.XMLSyntaxError as e:
                         self.log(f"Error parsing card XML: {e} - XML: {card_xml[:200]}")
                         continue
         finally:
-            for handle in open_files.values():
+            # Close every current file with a footer: the ones still open directly,
+            # the ones evicted from the cache by reopening them in append mode.
+            for bucket, handle in open_files.items():
                 handle.write("\n</root>")
                 handle.close()
+            for bucket, stats in self.file_stats.items():
+                if bucket in open_files:
+                    continue
+                path = self.bucket_file(bucket, stats['sequence'])
+                if path.exists():
+                    with open(path, "a", encoding="utf-8") as handle:
+                        handle.write("\n</root>")
+            open_files.clear()
 
         duration = time.time() - start_time
         throughput = processed_cards / duration if duration > 0 else 0
@@ -296,15 +345,16 @@ class PeppolSync:
     def generate_report(self):
         """Generate a markdown report of the sync operation"""
         report_path = self.docs_dir / "report.md"
-        self.announce("Generating report: {report_path}" )
+        self.announce(f"Generating report: {report_path}")
 
         with open(report_path, "w", encoding="utf-8") as f:
             f.write("# PEPPOL Sync Report\n\n")
             f.write(f"Generated on: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n\n")
 
-            f.write("| Country | Files | Cards | Size (MB) |\n")
-            f.write("|---|---:|---:|---:|\n")
+            f.write("| Country | Months | Files | Cards | Size (MB) |\n")
+            f.write("|---|---:|---:|---:|---:|\n")
 
+            total_months = 0
             total_files = 0
             total_cards = 0
             total_size_mb = 0
@@ -316,19 +366,21 @@ class PeppolSync:
                 if not country_dir.is_dir():
                     continue
 
-                files = list(country_dir.glob("*.xml"))
+                files = list(country_dir.glob("**/*.xml"))
+                month_count = len({p.parent for p in files})
                 file_count = len(files)
                 card_count = self.stats.get(f"country_{country}", 0)
                 size_bytes = sum(p.stat().st_size for p in files)
                 size_mb = size_bytes / (1024 * 1024)
 
-                f.write(f"| {country} | {file_count} | {card_count} | {size_mb:.2f} |\n")
+                f.write(f"| {country} | {month_count} | {file_count} | {card_count} | {size_mb:.2f} |\n")
 
+                total_months += month_count
                 total_files += file_count
                 total_cards += card_count
                 total_size_mb += size_mb
 
-            f.write(f"| **Total** | **{total_files}** | **{total_cards}** | **{total_size_mb:.2f}** |\n")
+            f.write(f"| **Total** | **{total_months}** | **{total_files}** | **{total_cards}** | **{total_size_mb:.2f}** |\n")
 
         self.success(f"Report generated at {report_path}")
         self.log(f"Report generated at {report_path}")
@@ -341,6 +393,10 @@ class PeppolSync:
             if file_path.is_file():
                 file_path.unlink()
                 deleted_files += 1
+        # Remove directories left empty (deepest first)
+        for dir_path in sorted(self.extracts_dir.glob("**/"), key=lambda p: len(p.parts), reverse=True):
+            if dir_path != self.extracts_dir and dir_path.is_dir() and not any(dir_path.iterdir()):
+                dir_path.rmdir()
         self.success(f"Deleted {deleted_files} XML files from {self.extracts_dir}/")
         self.log(f"Deleted {deleted_files} XML files from {self.extracts_dir}/")
 
