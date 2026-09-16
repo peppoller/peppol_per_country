@@ -14,7 +14,7 @@ try:
     from lxml import etree as ET
 except ImportError:
     sys.exit("lxml is not installed. Please run 'pip install lxml' to use this script.")
-from typing import BinaryIO, Optional
+from typing import BinaryIO, Dict, Optional
 from urllib.request import urlopen, Request
 from urllib.error import URLError
 import time
@@ -29,12 +29,12 @@ except ImportError:  # not available on Windows
 
 
 def convert_card(card_xml: str):
-    """Parse one <businesscard> and return (country, regdate, entity name, pretty bytes, error).
+    """Parse one <businesscard> and return (country, regdate, entity name, participant id, pretty bytes, error).
     Module-level so worker processes can run it."""
     try:
         root = ET.fromstring(card_xml.encode('utf-8'))
     except ET.XMLSyntaxError as e:
-        return None, None, None, None, f"Error parsing card XML: {e} - XML: {card_xml[:200]}"
+        return None, None, None, None, None, f"Error parsing card XML: {e} - XML: {card_xml[:200]}"
     entity = root.find(".//entity")
     country = entity.get("countrycode") if entity is not None else None
     regdate = root.find(".//regdate")
@@ -45,10 +45,15 @@ def convert_card(card_xml: str):
             date = text[:10]
     name = root.find(".//name")
     entity_name = name.get("name") if name is not None else None
+    participant = root.find(".//participant")
+    if participant is not None:
+        participant_id = f"{participant.get('scheme', '')}::{participant.get('value', '')}"
+    else:
+        participant_id = card_xml
     # Pretty print with lxml, indented one level under <root>
     pretty = ET.tostring(root, pretty_print=True, encoding='unicode')
     card_bytes = ("\n    " + pretty.strip().replace('\n', '\n    ')).encode('utf-8')
-    return country, date, entity_name, card_bytes, None
+    return country, date, entity_name, participant_id, card_bytes, None
 
 
 def convert_batch(cards):
@@ -64,7 +69,10 @@ class PeppolSync:
         self.extracts_dir = Path("extracts")
         self.docs_dir = Path("docs")
         self.log_dir = Path("log")
-        self.file_stats = {}
+        self.partitions: Dict[str, int] = {}     # bucket -> number of files
+        self.country_last_n: Dict[str, int] = {}  # country -> N of its most recent month
+        self.written: Dict[tuple, int] = {}       # (bucket, index) -> bytes written this run
+        self.paths: Dict[tuple, Path] = {}        # (bucket, index) -> output path (cached: Path building is slow per card)
         self.max_bytes = max_bytes
         self.keep_tmp = keep_tmp
         self.jobs = max(1, jobs)
@@ -202,10 +210,47 @@ class PeppolSync:
 
 
 
-    def bucket_file(self, bucket: str, sequence: int) -> Path:
-        """Path of the n-th file of a country/month bucket, e.g. extracts/BE/2026-08/business-cards.000003.xml"""
+    def bucket_file(self, bucket: str, index: int) -> Path:
+        """Path of file `index` (1-based) of a country/month bucket, e.g. extracts/BE/2026-08/business-cards.000003.xml"""
         country, month = bucket.split("/", 1)
-        return self.extracts_dir / country / month / f"business-cards.{sequence:06d}.xml"
+        return self.extracts_dir / country / month / f"business-cards.{index:06d}.xml"
+
+    def plan_partitions(self):
+        """Decide how many files each country/month bucket gets, from the previous run's extracts.
+
+        Cards are assigned to a file by hash of their participant id, so a bucket's file
+        count N must be stable across runs: any change reshuffles the whole bucket. N is
+        read back from the highest file index on disk and only doubled when files average
+        more than 1.5x max_bytes, or halved when they average less than 0.35x, which keeps
+        the average within [0.7x, 1.5x] without flip-flopping near a boundary.
+        A bucket seen for the first time starts with the N of that country's latest month.
+        Must run before cleanup_extracts()."""
+        rescaled = 0
+        if not self.extracts_dir.is_dir():
+            return
+        for country_dir in sorted(self.extracts_dir.iterdir()):
+            if not country_dir.is_dir():
+                continue
+            for month_dir in sorted(country_dir.iterdir()):
+                files = list(month_dir.glob("business-cards.*.xml")) if month_dir.is_dir() else []
+                if not files:
+                    continue
+                n_prev = max(int(f.stem.rsplit(".", 1)[-1]) for f in files)
+                size = sum(f.stat().st_size for f in files)
+                n = max(1, n_prev)
+                while size / n > 1.5 * self.max_bytes:
+                    n *= 2
+                while n > 1 and size / n < 0.35 * self.max_bytes:
+                    n //= 2
+                bucket = f"{country_dir.name}/{month_dir.name}"
+                self.partitions[bucket] = n
+                if n != n_prev:
+                    rescaled += 1
+                    self.log(f"Partition {bucket}: {n_prev} -> {n} files ({size / (1024 * 1024):.1f} MB)")
+                if month_dir.name[:2] != "00":  # skip the no-date placeholders when picking "latest month"
+                    self.country_last_n[country_dir.name] = n
+        self.log(f"Partition plan: {len(self.partitions)} buckets from previous extracts, {rescaled} rescaled")
+        self.announce(f"Partition plan: {len(self.partitions)} buckets, {rescaled} rescaled")
 
     def extract_date_from_etree(self, element: ET.Element) -> Optional[str]:
         """Extract registration date from ElementTree element"""
@@ -290,10 +335,9 @@ class PeppolSync:
 
         start_time = time.time()  # Record start time
 
-        open_files: "OrderedDict[str, BinaryIO]" = OrderedDict()  # bucket -> handle, LRU order
+        open_files: "OrderedDict[tuple, BinaryIO]" = OrderedDict()  # (bucket, index) -> handle, LRU order
         processed_cards = 0
-        footer = b"\n</root>\n"        # closes a file that is rotated
-        final_footer = b"\n</root>"    # closes the last file of a bucket (no trailing newline, as before)
+        final_footer = b"\n</root>"
 
         try:
             with open(input_file, 'r', encoding='utf-8') as f:
@@ -309,7 +353,7 @@ class PeppolSync:
                 header_bytes = header.replace('><', '>\n<').encode('utf-8')
 
                 cards = (card_xml for _, card_xml in items)
-                for country, date, entity_name, card_bytes, error in self.iter_converted(cards):
+                for country, date, entity_name, participant_id, card_bytes, error in self.iter_converted(cards):
                     processed_cards += 1
                     if processed_cards % 100000 == 0:
                         duration = time.time() - start_time
@@ -335,52 +379,52 @@ class PeppolSync:
 
                     self.stats[f"date_{date}"] += 1
 
-                    # File writing logic: one sequence of size-limited files per country/month
+                    # File writing logic: stable partition. A card always lands in the
+                    # same file of its country/month bucket (hash of participant id mod N),
+                    # so a changed card touches one file instead of shifting all later ones.
                     bucket = f"{country}/{month}"
-                    stats = self.file_stats.setdefault(bucket, {'sequence': 1})
-                    handle = open_files.get(bucket)
+                    n = self.partitions.get(bucket)
+                    if n is None:
+                        n = self.country_last_n.get(country, 1)
+                        self.partitions[bucket] = n
+                        self.log(f"Partition {bucket}: new bucket, {n} files")
+                    key = (bucket, zlib.crc32(participant_id.encode('utf-8')) % n + 1)
+                    handle = open_files.get(key)
 
                     if handle is not None:
-                        open_files.move_to_end(bucket)
-                        if stats['size'] > self.max_bytes:
-                            handle.write(footer)
-                            handle.close()
-                            del open_files[bucket]
-                            stats['sequence'] += 1
-                            handle = None
-
-                    if handle is None:
+                        open_files.move_to_end(key)
+                    else:
                         if len(open_files) >= self.max_open_files:
                             # Evict least recently used handle; the file is reopened in
-                            # append mode if needed and gets its footer in finalize.
+                            # append mode when needed and gets its footer in finalize.
                             _, victim = open_files.popitem(last=False)
                             victim.close()
-                        output_path = self.bucket_file(bucket, stats['sequence'])
-                        output_path.parent.mkdir(parents=True, exist_ok=True)
-                        # Binary mode with our own byte counter: tell() on a text-mode
-                        # file is expensive and was called once per card.
-                        handle = open(output_path, "ab")
-                        stats['size'] = handle.tell()
-                        if stats['size'] == 0:
+                        output_path = self.paths.get(key)
+                        if output_path is not None:
+                            handle = open(output_path, "ab")
+                        else:
+                            output_path = self.bucket_file(*key)
+                            self.paths[key] = output_path
+                            output_path.parent.mkdir(parents=True, exist_ok=True)
+                            handle = open(output_path, "wb")
                             handle.write(header_bytes)
-                            stats['size'] = len(header_bytes)
+                            self.written[key] = len(header_bytes)
                             self.file_count += 1
-                        open_files[bucket] = handle
+                        open_files[key] = handle
 
+                    # Binary mode with our own byte counter: tell() on a text-mode
+                    # file is expensive and was called once per card.
                     handle.write(card_bytes)
-                    stats['size'] += len(card_bytes)
+                    self.written[key] += len(card_bytes)
         finally:
             # Close every current file with a footer: the ones still open directly,
             # the ones evicted from the cache by reopening them in append mode.
-            for bucket, handle in open_files.items():
+            for key, handle in open_files.items():
                 handle.write(final_footer)
                 handle.close()
-            for bucket, stats in self.file_stats.items():
-                if bucket in open_files:
-                    continue
-                path = self.bucket_file(bucket, stats['sequence'])
-                if path.exists():
-                    with open(path, "ab") as handle:
+            for key in self.written:
+                if key not in open_files:
+                    with open(self.paths[key], "ab") as handle:
                         handle.write(final_footer)
             open_files.clear()
 
@@ -452,6 +496,9 @@ class PeppolSync:
     def sync(self, force_download: bool = False, cleanup: bool = False):
         """Main sync operation"""
         self.log("Starting sync operation")
+
+        # Read the file count per bucket from the previous run before anything is deleted
+        self.plan_partitions()
 
         if cleanup:
             self.cleanup_extracts()

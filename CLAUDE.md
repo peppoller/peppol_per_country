@@ -90,10 +90,11 @@ The `PeppolSync` class handles the entire workflow:
 
 3. **File Splitting Logic** (in `process_xml()`)
    - Groups cards per country and registration month (`<regdate>`): `extracts/BE/2026-08/`; cards without a registration date go to `extracts/BE/0000-00/`
-   - Within a month directory, splits files when they exceed `max_bytes` (default: 2MB)
-   - Sequential naming: `business-cards.000001.xml`, `business-cards.000002.xml`, etc.
-   - Bucketing by month keeps past months stable: a new registration only touches its own month, so daily commits stay small
-   - Keeps one output file open per country/month bucket, with an LRU cache bounded by the process file-descriptor limit
+   - Within a month directory a card always lands in the same file: `crc32(participant id) mod N`, named `business-cards.000001.xml` ... `business-cards.00000N.xml`
+   - N per bucket is read back from the previous run's extracts (`plan_partitions()`, before cleanup) and only doubled or halved when files average more than 1.5x or less than 0.35x `max_bytes` (default: 2MB), so file sizes float around the target and a bucket is reshuffled only on a rescale
+   - A bucket seen for the first time starts with the N of that country's latest month, so a new month begins with many small files instead of one huge one
+   - Stable partition means a changed, added or deleted card touches exactly one file; daily commits stay small and the repo grows slowly
+   - Keeps output files open in an LRU cache bounded by the process file-descriptor limit; evicted files are reopened in append mode
    - Automatically creates header and footer tags for valid XML
 
 4. **Report Generation** (`generate_report()`)
@@ -151,13 +152,13 @@ date from `<regdate>`, the entity name, and returns the pretty-printed card as U
 Output files are written in binary mode with a per-bucket byte counter; `tell()` on a
 text-mode file was a measurable per-card cost.
 
-### File Rotation
+### Partition Stability
 
-When a country file exceeds `max_bytes`:
-1. Writes `</root>` footer to close current file
-2. Increments sequence number in `self.file_stats[country]['sequence']`
-3. Opens new file with updated sequence
-4. Writes XML header to new file
+There is no size-based rotation any more. Changing `max_bytes` or the rescale thresholds
+reshuffles buckets whose average file size falls outside the new band, which produces one
+large commit. Deleting a bucket directory makes the next run start it from the country's
+latest-month N. The hash is `zlib.crc32`, chosen because it is stable across Python versions
+(the built-in `hash()` is salted per process).
 
 ### Cleanup Behavior
 
