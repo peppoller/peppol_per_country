@@ -48,22 +48,23 @@ The first argument to the script must be one of the following actions:
 
 The `PeppolSync` class handles the entire workflow:
 
-1. **Download Phase** (`download_xml()` at line 70)
+1. **Download Phase** (`download_xml()`)
 
     - Streams XML from `https://directory.peppol.eu/export/businesscards`
     - Saves to `tmp/directory-export-business-cards.xml`
     - Shows progress every 100MB
     - Skips download if file exists (override with `-F`)
 
-2. **Processing Phase** (`process_xml()` at line 153)
+2. **Processing Phase** (`process_xml()`)
 
-    - Uses text-based chunking (1MB chunks) for memory efficiency
+    - Uses text-based chunking (1MB chunks) for memory efficiency, scanning the buffer by index
+    - Parses and pretty-prints cards in a worker pool (`-j`, default: CPU count - 1); the main process keeps input order and does all writing
     - Parses business cards with `lxml.etree` for fast XML handling
     - Extracts country code from `<entity countrycode="XX">`
     - Extracts registration date from `<regdate>` for statistics
     - Writes pretty-printed XML to country/month directories
 
-3. **File Splitting Logic** (lines 228-250)
+3. **File Splitting Logic** (in `process_xml()`)
 
     - Groups cards per country and registration month (`<regdate>`): `extracts/BE/2026-08/`; cards without a registration date go to `extracts/BE/0000-00/`
     - Within a month directory, splits files when they exceed `max_bytes` (default: 2MB)
@@ -72,7 +73,7 @@ The `PeppolSync` class handles the entire workflow:
     - Keeps one output file open per country/month bucket, with an LRU cache bounded by the process file-descriptor limit
     - Automatically creates header and footer tags for valid XML
 
-4. **Report Generation** (`generate_report()` at line 269)
+4. **Report Generation** (`generate_report()`)
     - Creates `docs/report.md` with country statistics
     - Shows month count, file count, card count, and size per country
 
@@ -109,6 +110,9 @@ python3 peppol_sync.py huge -n 20
 
 # Custom max file size (default: 2MB)
 python3 peppol_sync.py sync -M 1000000
+
+# Single process, no worker pool (default: CPU count - 1 workers)
+python3 peppol_sync.py sync -j 1
 ```
 
 
@@ -130,14 +134,13 @@ The script processes multi-GB XML files without loading everything into memory:
 - Parses individual cards with lxml
 - Uses streaming writes to output files
 
-### Country Code Extraction
+### Card Conversion
 
-Located in `extract_country_from_etree()` (line 130):
-```python
-entity = element.find(".//entity")
-if entity is not None:
-    return entity.get("countrycode")
-```
+`convert_card()` is a module-level function (so worker processes can run it). It parses one
+card with lxml, extracts the country code from `<entity countrycode="XX">`, the registration
+date from `<regdate>`, the entity name, and returns the pretty-printed card as UTF-8 bytes.
+Output files are written in binary mode with a per-bucket byte counter; `tell()` on a
+text-mode file was a measurable per-card cost.
 
 ### File Rotation
 

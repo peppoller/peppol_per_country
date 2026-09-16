@@ -14,7 +14,7 @@ try:
     from lxml import etree as ET
 except ImportError:
     sys.exit("lxml is not installed. Please run 'pip install lxml' to use this script.")
-from typing import Dict, TextIO, Optional
+from typing import BinaryIO, Optional
 from urllib.request import urlopen, Request
 from urllib.error import URLError
 import time
@@ -28,10 +28,37 @@ except ImportError:  # not available on Windows
     resource = None
 
 
+def convert_card(card_xml: str):
+    """Parse one <businesscard> and return (country, regdate, entity name, pretty bytes, error).
+    Module-level so worker processes can run it."""
+    try:
+        root = ET.fromstring(card_xml.encode('utf-8'))
+    except ET.XMLSyntaxError as e:
+        return None, None, None, None, f"Error parsing card XML: {e} - XML: {card_xml[:200]}"
+    entity = root.find(".//entity")
+    country = entity.get("countrycode") if entity is not None else None
+    regdate = root.find(".//regdate")
+    date = None
+    if regdate is not None and regdate.text:
+        text = regdate.text.strip()
+        if len(text) >= 10:
+            date = text[:10]
+    name = root.find(".//name")
+    entity_name = name.get("name") if name is not None else None
+    # Pretty print with lxml, indented one level under <root>
+    pretty = ET.tostring(root, pretty_print=True, encoding='unicode')
+    card_bytes = ("\n    " + pretty.strip().replace('\n', '\n    ')).encode('utf-8')
+    return country, date, entity_name, card_bytes, None
+
+
+def convert_batch(cards):
+    return [convert_card(c) for c in cards]
+
+
 class PeppolSync:
     """Main class for PEPPOL export synchronization"""
 
-    def __init__(self, tmp_dir: str = "tmp", verbose: bool = False, max_bytes: int = 1000000, keep_tmp: bool = False):
+    def __init__(self, tmp_dir: str = "tmp", verbose: bool = False, max_bytes: int = 1000000, keep_tmp: bool = False, jobs: int = 1):
         self.tmp_dir = Path(tmp_dir)
         self.verbose = verbose
         self.extracts_dir = Path("extracts")
@@ -40,6 +67,7 @@ class PeppolSync:
         self.file_stats = {}
         self.max_bytes = max_bytes
         self.keep_tmp = keep_tmp
+        self.jobs = max(1, jobs)
         self.max_open_files = self._open_file_budget()
 
         # Create directories
@@ -174,13 +202,6 @@ class PeppolSync:
 
 
 
-    def extract_country_from_etree(self, element: ET.Element) -> Optional[str]:
-        """Extract country code from ElementTree element"""
-        entity = element.find(".//entity")
-        if entity is not None:
-            return entity.get("countrycode")
-        return None
-
     def bucket_file(self, bucket: str, sequence: int) -> Path:
         """Path of the n-th file of a country/month bucket, e.g. extracts/BE/2026-08/business-cards.000003.xml"""
         country, month = bucket.split("/", 1)
@@ -202,57 +223,93 @@ class PeppolSync:
             return name.get("name")
         return None
 
+    def iter_cards(self, f, chunk_size: int = 1024 * 1024):
+        """Yield (header, None) once, then (None, card_xml) for every <businesscard>.
+        Scans a rolling buffer by index; the buffer is only re-sliced when a chunk is appended."""
+        separator = "</businesscard>"
+        buffer = ""
+        while "<businesscard>" not in buffer:
+            chunk = f.read(chunk_size)
+            if not chunk:
+                return
+            buffer += chunk
+        header_end = buffer.find("<businesscard>")
+        yield buffer[:header_end], None
+        pos = header_end
+        while True:
+            sep_index = buffer.find(separator, pos)
+            if sep_index < 0:
+                chunk = f.read(chunk_size)
+                if not chunk:
+                    return
+                buffer = buffer[pos:] + chunk
+                pos = 0
+                continue
+            end_index = sep_index + len(separator)
+            yield None, buffer[pos:end_index]
+            pos = end_index
+
+    def iter_converted(self, cards):
+        """Yield convert_card() results in input order, using a worker pool when jobs > 1.
+        Prefetch is bounded so the input file is never read far ahead of the writer."""
+        if self.jobs <= 1:
+            for card_xml in cards:
+                yield convert_card(card_xml)
+            return
+
+        import multiprocessing as mp
+        from collections import deque
+        try:
+            ctx = mp.get_context("fork")
+        except ValueError:
+            ctx = mp.get_context()
+        batch_size = 2000
+        max_pending = self.jobs * 4
+        pending = deque()
+        with ctx.Pool(self.jobs) as pool:
+            batch = []
+            for card_xml in cards:
+                batch.append(card_xml)
+                if len(batch) >= batch_size:
+                    pending.append(pool.apply_async(convert_batch, (batch,)))
+                    batch = []
+                    if len(pending) >= max_pending:
+                        yield from pending.popleft().get()
+            if batch:
+                pending.append(pool.apply_async(convert_batch, (batch,)))
+            while pending:
+                yield from pending.popleft().get()
+
     def process_xml(self, input_file: Path):
         """Process XML file using text splitting for performance"""
-        self.announce(f"Processing {input_file.name} with text splitting")
-        self.log(f"Starting text processing: {input_file}")
+        self.announce(f"Processing {input_file.name} with text splitting ({self.jobs} worker(s))")
+        self.log(f"Starting text processing: {input_file} with {self.jobs} worker(s)")
 
         if not input_file.exists():
             raise FileNotFoundError(f"Input file not found: {input_file}")
 
         start_time = time.time()  # Record start time
 
-        chunk_size = 1024 * 1024  # 1MB
-        buffer = ""
-        separator = "</businesscard>"
-
-        header = ""
-        header_found = False
-        open_files: "OrderedDict[str, TextIO]" = OrderedDict()  # bucket -> handle, LRU order
+        open_files: "OrderedDict[str, BinaryIO]" = OrderedDict()  # bucket -> handle, LRU order
         processed_cards = 0
+        footer = b"\n</root>\n"        # closes a file that is rotated
+        final_footer = b"\n</root>"    # closes the last file of a bucket (no trailing newline, as before)
 
         try:
             with open(input_file, 'r', encoding='utf-8') as f:
-                # 1. Find header
-                while not header_found:
-                    chunk = f.read(chunk_size)
-                    if not chunk: break
-                    buffer += chunk
-                    if "<businesscard>" in buffer:
-                        header_end = buffer.find("<businesscard>")
-                        header = buffer[:header_end]
-                        # Remove creationdt from header to make it static
-                        header = re.sub(r'creationdt="[^"]*"', '', header)
-                        buffer = buffer[header_end:]
-                        header_found = True
-
-                if not header_found:
+                items = self.iter_cards(f)
+                try:
+                    header, _ = next(items)
+                except StopIteration:
                     self.log("No <businesscard> tag found.")
                     return 0
 
-                # 2. Process business cards
-                while True:
-                    if separator not in buffer:
-                        chunk = f.read(chunk_size)
-                        if not chunk: break
-                        buffer += chunk
+                # Remove creationdt from header to make it static
+                header = re.sub(r'creationdt="[^"]*"', '', header)
+                header_bytes = header.replace('><', '>\n<').encode('utf-8')
 
-                    if separator not in buffer: break
-
-                    end_index = buffer.find(separator) + len(separator)
-                    card_xml = buffer[:end_index]
-                    buffer = buffer[end_index:]
-
+                cards = (card_xml for _, card_xml in items)
+                for country, date, entity_name, card_bytes, error in self.iter_converted(cards):
                     processed_cards += 1
                     if processed_cards % 100000 == 0:
                         duration = time.time() - start_time
@@ -260,85 +317,77 @@ class PeppolSync:
                         self.progress(
                             f"{processed_cards:,} business cards in {duration:.1f}s: {throughput:.0f} cards/sec")
 
-                    try:
-                        # Use lxml for fast parsing and pretty printing
-                        root = ET.fromstring(card_xml.encode('utf-8'))
-                        country = self.extract_country_from_etree(root)
-                        date = self.extract_date_from_etree(root)
-
-                        if not country:
-                            self.log(f"Could not extract country from card: {card_xml[:100]}")
-                            continue
-
-                        self.stats[f"country_{country}"] += 1
-
-                        # Bucket by registration month; cards without regdate go to 0000-00
-                        month = date[:7] if date else "0000-00"
-
-                        if not date:
-                            entity_name = self.extract_entity_name_from_etree(root)
-                            safe_name = "".join(filter(str.isalnum, entity_name or ""))[:5].upper()
-                            date = f"2000-{safe_name}" if safe_name else "2000-UNKNOWN"
-
-                        self.stats[f"date_{date}"] += 1
-
-                        # File writing logic: one sequence of size-limited files per country/month
-                        bucket = f"{country}/{month}"
-                        stats = self.file_stats.setdefault(bucket, {'sequence': 1})
-                        handle = open_files.get(bucket)
-
-                        if handle is not None:
-                            open_files.move_to_end(bucket)
-                            if handle.tell() > self.max_bytes:
-                                handle.write('\n</root>\n')
-                                handle.close()
-                                del open_files[bucket]
-                                stats['sequence'] += 1
-                                handle = None
-
-                        if handle is None:
-                            if len(open_files) >= self.max_open_files:
-                                # Evict least recently used handle; the file is reopened in
-                                # append mode if needed and gets its footer in finalize.
-                                _, victim = open_files.popitem(last=False)
-                                victim.close()
-                            output_path = self.bucket_file(bucket, stats['sequence'])
-                            output_path.parent.mkdir(parents=True, exist_ok=True)
-                            handle = open(output_path, "a", encoding="utf-8")
-                            if handle.tell() == 0:
-                                handle.write(header.replace('><', '>\n<'))
-                                self.file_count += 1
-                            open_files[bucket] = handle
-
-                        # Pretty print the XML using lxml
-                        pretty_card_xml = ET.tostring(root, pretty_print=True, encoding='unicode')
-                        indented_card = "    " + pretty_card_xml.strip().replace('\n', '\n    ')
-                        handle.write("\n" + indented_card)
-
-                    except ET.XMLSyntaxError as e:
-                        self.log(f"Error parsing card XML: {e} - XML: {card_xml[:200]}")
+                    if error:
+                        self.log(error)
                         continue
+                    if not country:
+                        self.log(f"Could not extract country from card: {card_bytes[:100]!r}")
+                        continue
+
+                    self.stats[f"country_{country}"] += 1
+
+                    # Bucket by registration month; cards without regdate go to 0000-00
+                    month = date[:7] if date else "0000-00"
+
+                    if not date:
+                        safe_name = "".join(filter(str.isalnum, entity_name or ""))[:5].upper()
+                        date = f"2000-{safe_name}" if safe_name else "2000-UNKNOWN"
+
+                    self.stats[f"date_{date}"] += 1
+
+                    # File writing logic: one sequence of size-limited files per country/month
+                    bucket = f"{country}/{month}"
+                    stats = self.file_stats.setdefault(bucket, {'sequence': 1})
+                    handle = open_files.get(bucket)
+
+                    if handle is not None:
+                        open_files.move_to_end(bucket)
+                        if stats['size'] > self.max_bytes:
+                            handle.write(footer)
+                            handle.close()
+                            del open_files[bucket]
+                            stats['sequence'] += 1
+                            handle = None
+
+                    if handle is None:
+                        if len(open_files) >= self.max_open_files:
+                            # Evict least recently used handle; the file is reopened in
+                            # append mode if needed and gets its footer in finalize.
+                            _, victim = open_files.popitem(last=False)
+                            victim.close()
+                        output_path = self.bucket_file(bucket, stats['sequence'])
+                        output_path.parent.mkdir(parents=True, exist_ok=True)
+                        # Binary mode with our own byte counter: tell() on a text-mode
+                        # file is expensive and was called once per card.
+                        handle = open(output_path, "ab")
+                        stats['size'] = handle.tell()
+                        if stats['size'] == 0:
+                            handle.write(header_bytes)
+                            stats['size'] = len(header_bytes)
+                            self.file_count += 1
+                        open_files[bucket] = handle
+
+                    handle.write(card_bytes)
+                    stats['size'] += len(card_bytes)
         finally:
             # Close every current file with a footer: the ones still open directly,
             # the ones evicted from the cache by reopening them in append mode.
             for bucket, handle in open_files.items():
-                handle.write("\n</root>")
+                handle.write(final_footer)
                 handle.close()
             for bucket, stats in self.file_stats.items():
                 if bucket in open_files:
                     continue
                 path = self.bucket_file(bucket, stats['sequence'])
                 if path.exists():
-                    with open(path, "a", encoding="utf-8") as handle:
-                        handle.write("\n</root>")
+                    with open(path, "ab") as handle:
+                        handle.write(final_footer)
             open_files.clear()
 
         duration = time.time() - start_time
         throughput = processed_cards / duration if duration > 0 else 0
         self.success(f"Processed {processed_cards:,} business cards in {duration:.0f}s: {throughput:.0f} cards/sec")
         self.log(f"Processed {processed_cards:,} business cards in {duration:.0f}s: {throughput:.0f} cards/sec")
-
-        countries = [k.replace("country_", "") for k in self.stats.keys() if k.startswith("country_")]
 
         return processed_cards
 
@@ -533,7 +582,14 @@ def main():
         "-M", "--max",
         type=int,
         default=2000000,
-        help="Maximum number of bytes per output file (default: 1000000)"
+        help="Maximum number of bytes per output file (default: 2000000)"
+    )
+
+    parser.add_argument(
+        "-j", "--jobs",
+        type=int,
+        default=max(1, (os.cpu_count() or 2) - 1),
+        help="Worker processes for XML parsing (default: CPU count - 1; 1 = no worker pool)"
     )
 
     args = parser.parse_args()
@@ -543,7 +599,8 @@ def main():
         tmp_dir=args.tmp,
         verbose=args.verbose,
         max_bytes=args.max,
-        keep_tmp=args.keep_tmp
+        keep_tmp=args.keep_tmp,
+        jobs=args.jobs
     )
 
     try:
